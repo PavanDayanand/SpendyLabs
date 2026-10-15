@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { widgetGuides, siriActions } from "../data/appFeatures";
 import { Reveal } from "./Reveal";
 import { FeaturePanel, FeatureTabs } from "./FeatureTabs";
+import { SpendyWidgetPreview } from "./SpendyWidgetPreview";
 
 const ids = ["siri", "receipt", "widgets", "extras"];
 
@@ -167,47 +168,48 @@ function ReceiptExample() {
 
 function WidgetExample() {
   const [selected, setSelected] = useState(0);
-  const reduce = useReducedMotion();
+  const [size, setSize] = useState("Small");
+  const widget = widgetGuides[selected];
   return (
     <div className="access-example widget-example">
       <div className="demo-topline">
-        <span>A LITTLE CLOSER TO YOUR DAY</span>
-        <span>EXAMPLE</span>
+        <span>THE WIDGETS IN SPENDY</span>
+        <span>EXAMPLE DATA</span>
       </div>
-      <div className="widget-preview">
-        <span>{widgetGuides[selected].name}</span>
-        <strong>
-          {selected === 1 ? "₹4,000" : selected === 2 ? "+  Scan  ↗" : "₹840"}
-        </strong>
-        <div className="widget-bars" aria-hidden="true">
-          {[0.3, 0.65, 0.2, 0.8, 0.45, 0.96, 0.4].map((height, i) => (
-            <motion.span
-              key={i}
-              initial={{ scaleY: reduce ? height : 0 }}
-              animate={{ scaleY: height }}
-              style={{ transformOrigin: "bottom" }}
-              transition={{
-                duration: reduce ? 0 : 0.5,
-                delay: reduce ? 0 : i * 0.07,
-              }}
-            />
-          ))}
-        </div>
+      <SpendyWidgetPreview name={widget.name} size={size} />
+      <div className="widget-chooser">
+        <label className="action-select">
+          Choose a widget
+          <select
+            value={selected}
+            onChange={(event) => {
+              const next = Number(event.target.value);
+              setSelected(next);
+              setSize(widgetGuides[next].sizes[0]);
+            }}
+          >
+            {widgetGuides.map((item, index) => (
+              <option key={item.name} value={index}>
+                {item.name}
+              </option>
+            ))}
+          </select>
+        </label>
+        {widget.sizes.length > 1 && (
+          <label className="action-select">
+            Size
+            <select
+              value={size}
+              onChange={(event) => setSize(event.target.value)}
+            >
+              {widget.sizes.map((option) => (
+                <option key={option}>{option}</option>
+              ))}
+            </select>
+          </label>
+        )}
       </div>
-      <label className="action-select">
-        Choose a widget
-        <select
-          value={selected}
-          onChange={(e) => setSelected(Number(e.target.value))}
-        >
-          {widgetGuides.map((widget, i) => (
-            <option key={widget.name} value={i}>
-              {widget.name} · {widget.size}
-            </option>
-          ))}
-        </select>
-      </label>
-      <p className="shortcut-result">{widgetGuides[selected].description}</p>
+      <p className="shortcut-result">{widget.description}</p>
     </div>
   );
 }
@@ -371,7 +373,9 @@ export function EverydayTools() {
                   <strong>See how receipt review works</strong>
                   <small>Optional Apple Intelligence assistance</small>
                 </span>
-                <span className="receipt-path-arrow" aria-hidden="true">↗</span>
+                <span className="receipt-path-arrow" aria-hidden="true">
+                  ↗
+                </span>
               </button>
             )}
           </div>

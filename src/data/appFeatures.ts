@@ -2,39 +2,43 @@
 export const widgetGuides = [
   {
     name: "Today",
-    size: "SMALL",
+    sizes: ["Small", "Medium", "Large"],
     description:
-      "Today's total and a seven-day rhythm. Tap to open Home, or edit the widget’s focus to show your budget, week, or category.",
+      "Today’s recorded spending and seven-day context. The medium size becomes a weekly pulse; the large size shows a monthly brief. You can also edit its focus to a budget or category.",
   },
   {
     name: "Budget room",
-    size: "SMALL",
-    description:
-      "Keep remaining room, days left, and daily pace close. Tap through to your budget when you need the detail.",
+    sizes: ["Small"],
+    description: "Remaining room, budget progress, and days left in the cycle.",
   },
   {
     name: "Quick actions",
-    size: "SMALL · MEDIUM",
+    sizes: ["Small", "Medium"],
     description:
-      "Three shortcuts: Add, Scan, and Trends. The medium layout also shows today’s spending.",
+      "Add, Scan, and Trends. The medium size also shows today’s recorded spending.",
   },
   {
     name: "Spending Pulse",
-    size: "MEDIUM",
+    sizes: ["Medium"],
     description:
-      "A seven-day view of your spending rhythm, right on your Home Screen.",
+      "Today’s total beside the last seven days of recorded spending.",
   },
   {
     name: "Where It Went",
-    size: "MEDIUM",
-    description:
-      "A quick look at your category spending, without opening the full breakdown.",
+    sizes: ["Medium"],
+    description: "Your top three spending categories for this month.",
   },
   {
     name: "Monthly Brief",
-    size: "LARGE",
+    sizes: ["Large"],
     description:
-      "A larger overview of the month, including spending, categories, and budget context.",
+      "This month’s total and comparison, the seven-day rhythm, top category, and budget room.",
+  },
+  {
+    name: "Lock Screen",
+    sizes: ["Circular", "Rectangular", "Inline"],
+    description:
+      "A compact today total on the Lock Screen, available in circular, rectangular, and inline styles.",
   },
 ];
 export const siriActions = [

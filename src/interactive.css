@@ -538,16 +538,11 @@
 .action-select select {
   display: block;
   width: 100%;
-  max-width: 100%;
+  min-width: 0;
   min-height: 44px;
   margin-top: 8px;
-  border: 1px solid #bbb;
-  border-radius: 3px;
-  background: var(--paper);
-  color: var(--ink);
   font: inherit;
-  font-size: 14px;
-  padding: 10px;
+  font-size: 15px;
   cursor: pointer;
 }
 .shortcut-result {
@@ -619,37 +614,6 @@
   font-size: 11px;
   color: var(--muted);
   margin-top: 18px;
-}
-.widget-preview {
-  width: min(100%, 250px);
-  padding: 22px;
-  margin: 28px auto;
-  background: #171717;
-  color: #f3f3f3;
-  border-radius: 22px;
-}
-.widget-preview > span {
-  font-size: 12px;
-  color: #bbb;
-}
-.widget-preview > strong {
-  display: block;
-  font-size: 32px;
-  font-weight: 500;
-  margin-top: 12px;
-  letter-spacing: -0.03em;
-}
-.widget-bars {
-  display: flex;
-  gap: 8px;
-  height: 55px;
-  margin-top: 18px;
-}
-.widget-bars > span {
-  height: 100%;
-  background: #eee;
-  flex: 1;
-  border-radius: 2px 2px 0 0;
 }
 .extras-example > div {
   padding: 26px 0;
@@ -1137,33 +1101,7 @@ html {
   font-size: clamp(26px, 2.7vw, 36px);
 }
 .siri-example .action-select {
-  position: relative;
   font-size: 12px;
-}
-.siri-example .action-select::after {
-  content: "⌄";
-  position: absolute;
-  right: 4px;
-  bottom: 14px;
-  color: var(--ink);
-  font-size: 24px;
-  line-height: 1;
-  pointer-events: none;
-}
-.siri-example .action-select select {
-  appearance: none;
-  min-height: 52px;
-  padding: 10px 32px 10px 0;
-  border: 0;
-  border-bottom: 1px solid #a8a8a5;
-  border-radius: 0;
-  background: transparent;
-  color: var(--ink);
-  font-size: 16px;
-  font-weight: 550;
-}
-.siri-example .action-select select:focus-visible {
-  outline-offset: 3px;
 }
 .siri-example .shortcut-result {
   min-height: 0;
@@ -1307,4 +1245,18 @@ html {
 .receipt-path:hover strong {
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+
+.widget-chooser {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 12px;
+  align-items: end;
+}
+.widget-chooser .action-select:only-child {
+  grid-column: 1 / -1;
+}
+.widget-example .shortcut-result {
+  min-height: 0;
+  line-height: 1.55;
 }

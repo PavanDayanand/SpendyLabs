@@ -2,7 +2,7 @@
 export const socialLinks = [
   { name: "Instagram", href: "https://www.instagram.com/pav6n" },
   { name: "Made by Pavan", href: "https://studiopavan.netlify.app" },
-  { name: "Feedback & ideas", href: "https://spendy.featurebase.app/" },
+  { name: "Request a feature", href: "https://spendy.userjot.com/" },
   { name: "Buy me a coffee", href: "https://www.buymeacoffee.com/spendy" },
 ];
 
