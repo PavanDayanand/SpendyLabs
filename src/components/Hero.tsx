@@ -1,5 +1,5 @@
 import { Reveal } from "./Reveal";
-import { LedgerDemo } from "./LedgerDemo";
+import { SpendyMascot } from "./SpendyMascot";
 
 export function Hero() {
   return (
@@ -7,14 +7,8 @@ export function Hero() {
       <section className="hero section">
         <Reveal className="hero-copy">
           <div className="hero-identity">
-            <img
-              src="/images/app-icon.png"
-              alt="Spendy’s coffee character"
-              width="112"
-              height="128"
-            />
             <div>
-              <p className="eyebrow">SPENDY FOR IPHONE</p>
+              <p className="eyebrow">SPENDY FOR iOS</p>
               <p className="hero-identity-note">
                 Minimal by design.
                 <br />
@@ -29,7 +23,7 @@ export function Hero() {
           </h1>
           <p className="hero-description">
             Scan a receipt. Log an expense. See where your money goes. A minimal
-            iPhone app that keeps everyday money simple.
+            iOS app that keeps everyday money simple.
           </p>
           <div className="hero-actions">
             <a className="button" href="#guides">
@@ -45,7 +39,10 @@ export function Hero() {
             <span>Siri shortcuts</span>
           </div>
         </Reveal>
-        <LedgerDemo />
+        <Reveal className="hero-mascot">
+          <SpendyMascot />
+          <p className="hero-mascot-hint">Tap for a coffee break.</p>
+        </Reveal>
       </section>
       <nav className="start-links section" aria-label="Explore Spendy">
         {[

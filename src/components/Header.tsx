@@ -7,7 +7,7 @@ export function Header() {
         <div className="product-header-bar">
           <Link to="/" className="product-brand" aria-label="Spendy home">
             <img
-              src="/images/spendy-ios-icon.png"
+              src="/images/spendy-ios-icon-dark.png"
               alt=""
               width="56"
               height="56"

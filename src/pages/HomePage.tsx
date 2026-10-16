@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Hero } from "../components/Hero";
+import { SpendingStory } from "../components/SpendingStory";
 import { InsightsSection } from "../components/InsightsSection";
 import { AppGuides } from "../components/AppGuides";
 import { EverydayTools } from "../components/EverydayTools";
@@ -11,6 +12,7 @@ export function HomePage() {
     <div className="compact-home">
       <Hero />
       <AppGuides />
+      <SpendingStory />
       <InsightsSection />
       <EverydayTools />
       <section className="privacy-strip section">
@@ -42,13 +44,13 @@ export function HomePage() {
           </p>
           <div className="waitlist-platform">
             <img
-              src="/images/spendy-ios-icon.png"
+              src="/images/spendy-ios-icon-dark.png"
               alt="Spendy app icon"
               width="52"
               height="52"
             />
             <div>
-              <strong>Spendy for iPhone</strong>
+              <strong>Spendy for iOS</strong>
               <span>In development · Beta coming later</span>
             </div>
           </div>

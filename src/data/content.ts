@@ -24,7 +24,7 @@ export const faqs = [
   {
     question: "Can Spendy remind me about bills and budgets?",
     answer:
-      "Yes. Optional notifications cover subscription renewals, weekly spending summaries, and budget thresholds at 80% and 100%. They use the payments, dates, and expenses you record—not access to your bank account.",
+      "Yes. Optional notifications cover subscription renewals, weekly spending summaries, and budget thresholds at 80% and 100%. They use the payments, dates, and expenses you record, without accessing your bank account.",
   },
   {
     question: "Can I download Spendy yet?",
@@ -49,6 +49,6 @@ export const faqs = [
   {
     question: "Will it work on Android?",
     answer:
-      "We are focusing on the native iPhone app first. We have no Android release to announce right now.",
+      "We are focusing on the native iOS app first. We have no Android release to announce right now.",
   },
 ];

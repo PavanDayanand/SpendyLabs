@@ -5,7 +5,7 @@ export function Footer() {
     <footer className="footer">
       <div className="footer-top">
         <p>
-          MADE FOR IPHONE.
+          MADE FOR iOS.
           <br />
           BUILT FOR YOUR EVERYDAY.
         </p>

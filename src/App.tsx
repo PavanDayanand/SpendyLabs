@@ -10,11 +10,11 @@ export default function App() {
   const { pathname, hash, state } = useLocation();
   useEffect(() => {
     const titles: Record<string, string> = {
-      "/": "Spendy — Money makes sense.",
-      "/updates": "Build notes — Spendy",
-      "/privacy": "Privacy Policy — Spendy",
+      "/": "Spendy | Money makes sense.",
+      "/updates": "Build notes | Spendy",
+      "/privacy": "Privacy Policy | Spendy",
     };
-    document.title = titles[pathname] || "Page not found — Spendy";
+    document.title = titles[pathname] || "Page not found | Spendy";
     if (state?.preserveScroll) return;
     if (hash) document.getElementById(hash.slice(1))?.scrollIntoView();
     else window.scrollTo(0, 0);
