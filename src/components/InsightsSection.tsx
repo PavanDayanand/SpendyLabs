@@ -239,7 +239,17 @@ export function InsightsSection() {
       <div className="section">
         <Reveal className="section-heading compact-heading">
           <div>
-            <p className="eyebrow">02 / SPENDY INSIGHTS</p>
+            <div className="insights-brand">
+              <img
+                src="/images/SpendyInsight.png"
+                alt=""
+                width="64"
+                height="64"
+                loading="lazy"
+                decoding="async"
+              />
+              <p className="eyebrow">02 / SPENDY INSIGHTS</p>
+            </div>
             <h2>
               The numbers.
               <br />
