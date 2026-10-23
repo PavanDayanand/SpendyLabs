@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import waitlistHandler from "../api/waitlist";
 
 test("Vercel waitlist handler rejects unsupported methods", async () => {
-  const response = await waitlistHandler(
+  const response = await waitlistHandler.fetch(
     new Request("http://localhost/api/waitlist", {
       headers: { "x-forwarded-for": "203.0.113.10" },
     }),
@@ -14,7 +14,7 @@ test("Vercel waitlist handler rejects unsupported methods", async () => {
 });
 
 test("Vercel waitlist handler validates a POST before storage", async () => {
-  const response = await waitlistHandler(
+  const response = await waitlistHandler.fetch(
     new Request("http://localhost/api/waitlist", {
       method: "POST",
       headers: {

@@ -76,7 +76,7 @@ async function saveSignup(email: string) {
   }
 }
 
-export default async function handler(request: Request) {
+async function handler(request: Request) {
   if (request.method !== "POST") return json("Method not allowed.", 405);
   if (isRateLimited(request)) {
     return json(
@@ -110,3 +110,5 @@ export default async function handler(request: Request) {
     return json("Could not save your signup. Please try again shortly.", 503);
   }
 }
+
+export default { fetch: handler };
