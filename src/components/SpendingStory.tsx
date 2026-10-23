@@ -14,8 +14,8 @@ export function SpendingStory() {
           <br />A clearer picture.
         </h2>
         <p>
-          A coffee, groceries, a transfer. Keep everyday spending in view, with
-          transfers kept separate.
+          From a coffee to the weekly shop, every entry helps you see where your
+          money is going. Transfers stay separate, so the picture stays clear.
         </p>
         <a className="text-link" href="#insights">
           Explore spending insights <span aria-hidden="true">↗</span>

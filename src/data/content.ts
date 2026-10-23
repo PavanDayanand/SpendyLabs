@@ -42,13 +42,18 @@ export const faqs = [
       "No. You log expenses yourself and organise them into accounts and categories. Spendy does not need your bank login.",
   },
   {
+    question: "What can I use for free?",
+    answer:
+      "The everyday essentials stay free: tracking expenses and income, planning budgets, and keeping subscriptions together. Spendy may add optional paid conveniences later, but the basics are not going away.",
+  },
+  {
     question: "Does my financial data leave my iPhone?",
     answer:
-      "Your expense ledger is stored locally on your device. You control your JSON backups. The website waitlist is separate: it stores the email you choose to share.",
+      "Your expense records stay on your iPhone, and you decide where to keep any backup you export. The website waitlist is separate: it stores only the email you choose to share.",
   },
   {
     question: "Will it work on Android?",
     answer:
-      "We are focusing on the native iOS app first. We have no Android release to announce right now.",
+      "Spendy is being made for iPhone first. We do not have an Android release to announce right now.",
   },
 ];

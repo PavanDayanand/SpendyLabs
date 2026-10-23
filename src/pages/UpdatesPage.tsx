@@ -25,15 +25,9 @@ export function UpdatesPage() {
           <p>{update.text}</p>
           {update.tag === "UNDER THE HOOD" && (
             <ul>
-              <li>
-                Atomic local saves and recovery from a previous successful
-                snapshot.
-              </li>
-              <li>Stricter checks before importing a JSON backup.</li>
-              <li>
-                Regression coverage for transactions, budgets, and
-                subscriptions.
-              </li>
+              <li>Safer saves, with a recent copy ready if something goes wrong.</li>
+              <li>Extra checks before bringing in a backup.</li>
+              <li>More testing across transactions, budgets, and subscriptions.</li>
             </ul>
           )}
         </article>

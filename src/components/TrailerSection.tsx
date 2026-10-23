@@ -1,4 +1,4 @@
-const trailerVideoId = "fYSqnzF3wEM";
+const trailerVideoId = "0umZcuX-WW4";
 
 export function TrailerSection() {
   return (
@@ -7,7 +7,10 @@ export function TrailerSection() {
         <p className="eyebrow">THE SPENDY TRAILER</p>
         <div>
           <h2>Money makes sense.</h2>
-          <p>See how Spendy turns everyday spending into a clearer picture.</p>
+          <p>
+            A quick look at the friendly iOS app bringing expenses, budgets,
+            subscriptions, and insights together.
+          </p>
         </div>
       </div>
 

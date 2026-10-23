@@ -245,14 +245,14 @@ export function InsightsSection() {
               <p className="eyebrow">02 / SPENDY INSIGHTS</p>
             </div>
             <h2>
-              The numbers.
+              Helpful answers.
               <br />
-              <span>The reason behind them.</span>
+              <span>Without the homework.</span>
             </h2>
           </div>
           <p>
-            Calculated on your iPhone from your records. Explore the maths, then
-            see where each insight lives in the app.
+            Spendy turns the entries on your iPhone into clear, useful context.
+            You can always look closer when you want to.
           </p>
         </Reveal>
         <FeatureTabs
@@ -283,7 +283,7 @@ export function InsightsSection() {
         </FeaturePanel>
         <details className="more-details calculation-details">
           <summary>
-            A closer look at the rules
+            Want to see how Spendy works it out?
             <span className="disclosure" aria-hidden="true">
               +
             </span>
@@ -299,9 +299,9 @@ export function InsightsSection() {
           </div>
         </details>
         <p className="insights-footer">
-          Your records set the context. Missing entries affect the result;
-          comparisons need suitable history. These are calculations and rules,
-          not generative AI answers.
+          Spendy only works with the records you add, so missing entries can
+          change the picture. It uses clear on-device calculations and never
+          makes up an answer.
         </p>
       </div>
     </section>

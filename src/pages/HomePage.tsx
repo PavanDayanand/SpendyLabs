@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Hero } from "../components/Hero";
 import { TrailerSection } from "../components/TrailerSection";
+import { OriginStory } from "../components/OriginStory";
 import { SpendingStory } from "../components/SpendingStory";
 import { InsightsSection } from "../components/InsightsSection";
 import { AppGuides } from "../components/AppGuides";
@@ -13,6 +14,7 @@ export function HomePage() {
     <div className="compact-home">
       <Hero />
       <TrailerSection />
+      <OriginStory />
       <AppGuides />
       <SpendingStory />
       <InsightsSection />
@@ -22,8 +24,8 @@ export function HomePage() {
         <div>
           <h3>Your money is your business.</h3>
           <p>
-            Your ledger stays on your iPhone. No bank login. A JSON backup when
-            you want your own copy.
+            Your records stay on your iPhone. No bank login. Export a backup
+            whenever you want your own copy.
           </p>
         </div>
         <Link to="/privacy" className="text-link">
@@ -33,16 +35,16 @@ export function HomePage() {
       <section className="waitlist section" id="waitlist">
         <div className="waitlist-copy">
           <p className="eyebrow">
-            <span className="status-dot" /> YOUR NEXT LITTLE GOOD HABIT
+            <span className="status-dot" /> COME BUILD THE NEXT CHAPTER WITH US
           </p>
           <h2>
-            Be here
+            Join us
             <br />
-            <span>before the buzz.</span>
+            <span>from the beginning.</span>
           </h2>
           <p>
-            Leave your email for beta invitations and launch updates, when
-            they’re ready.
+            Leave your email and we’ll let you know when beta invitations and
+            launch news are ready.
           </p>
           <div className="waitlist-platform">
             <img

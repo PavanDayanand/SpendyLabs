@@ -22,8 +22,9 @@ export function Hero() {
             <span className="muted">a little clearer.</span>
           </h1>
           <p className="hero-description">
-            Scan a receipt. Log an expense. See where your money goes. A minimal
-            iOS app that keeps everyday money simple.
+            Expenses, budgets, subscriptions, and helpful insights in one
+            friendly iOS app. No bank login. Just a clearer way to stay on top
+            of everyday money.
           </p>
           <div className="hero-actions">
             <a className="button" href="#guides">
@@ -34,7 +35,7 @@ export function Hero() {
             </a>
           </div>
           <div className="hero-notes">
-            <span>Budgets &amp; renewals</span>
+            <span>Everyday essentials stay free</span>
             <span>No bank login</span>
             <span>Siri shortcuts</span>
           </div>
@@ -61,7 +62,7 @@ export function Hero() {
           {
             number: "03",
             title: "understand your spending",
-            text: "The numbers and how we read them",
+            text: "Helpful context from the entries you add",
             href: "#insights",
           },
         ].map((item) => (

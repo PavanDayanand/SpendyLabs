@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import type { Rive } from "@rive-app/webgl2";
 import wasmUrl from "@rive-app/webgl2/rive.wasm?url";
 
-/** Plays the ribbon reveal once when the Insights heading enters view. */
+/** Replays the ribbon reveal occasionally while the Insights heading is visible. */
 export function SpendyInsightsLogo() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [reduceMotion, setReduceMotion] = useState(true);
@@ -21,14 +21,35 @@ export function SpendyInsightsLogo() {
     if (reduceMotion || !canvas) return;
     let disposed = false;
     let started = false;
-    let completed = false;
     let inView = false;
+    let waitingForReplay = false;
+    let replayTimer: number | undefined;
     let runtime: Rive | undefined;
     let resize: ResizeObserver | undefined;
+    const clearReplay = () => {
+      if (replayTimer !== undefined) window.clearTimeout(replayTimer);
+      replayTimer = undefined;
+    };
+    const scheduleReplay = () => {
+      clearReplay();
+      if (disposed || document.hidden || !inView) return;
+      replayTimer = window.setTimeout(() => {
+        replayTimer = undefined;
+        if (disposed || document.hidden || !inView || !runtime) return;
+        waitingForReplay = false;
+        runtime.scrub("Ribbon Reveal", 0);
+        runtime.play("Ribbon Reveal");
+      }, 9000);
+    };
     const playback = () => {
-      if (completed) return;
-      if (document.hidden || !inView) runtime?.pause();
-      else runtime?.play("Ribbon Reveal");
+      if (document.hidden || !inView) {
+        clearReplay();
+        if (!waitingForReplay) runtime?.pause("Ribbon Reveal");
+      } else if (waitingForReplay) {
+        scheduleReplay();
+      } else {
+        runtime?.play("Ribbon Reveal");
+      }
     };
     const visibility = new IntersectionObserver(([entry]) => {
       inView = entry.isIntersecting;
@@ -55,7 +76,10 @@ export function SpendyInsightsLogo() {
             setReady(true);
             playback();
           },
-          onStop: () => { completed = true; },
+          onStop: () => {
+            waitingForReplay = true;
+            scheduleReplay();
+          },
           onLoadError: () => { if (!disposed) setReady(false); },
         });
       }).catch(() => { if (!disposed) setReady(false); });
@@ -64,6 +88,7 @@ export function SpendyInsightsLogo() {
     document.addEventListener("visibilitychange", playback);
     return () => {
       disposed = true;
+      clearReplay();
       visibility.disconnect();
       resize?.disconnect();
       document.removeEventListener("visibilitychange", playback);

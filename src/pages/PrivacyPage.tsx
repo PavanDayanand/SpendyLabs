@@ -28,7 +28,7 @@ export function PrivacyPage() {
         {policy.contactEmail ? (
           <p>For privacy questions, waitlist removal, or other privacy requests, email <a className="text-link" href={`mailto:${policy.contactEmail}`}>{policy.contactEmail}</a>.</p>
         ) : (
-          <p>A dedicated privacy contact will be provided before public release. This development version is not ready for public waitlist collection.</p>
+          <p>A dedicated privacy contact will be shown here whenever public contact details are unavailable.</p>
         )}
         <p>Please do not send banking passwords, full card numbers, or your complete financial ledger when asking a privacy question.</p>
       </section>

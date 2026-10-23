@@ -20,6 +20,7 @@ export function Header() {
         </div>
       </header>
       <nav className="product-nav" aria-label="Main navigation">
+        <a href="/#story">OUR STORY</a>
         <a href="/#guides">THE APP</a>
         <a href="/#insights">INSIGHTS</a>
         <a href="/#siri">SHORTCUTS</a>

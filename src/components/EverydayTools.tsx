@@ -20,28 +20,11 @@ function SiriExample() {
         <span>EXAMPLE</span>
       </div>
       <div className="integration-icons">
-        <div>
-          <img
-            className="siri-icon"
-            src="/images/siri-orb.png"
-            alt=""
-            width="44"
-            height="44"
-          />
-          <span>Siri</span>
-        </div>
+        <strong>Siri</strong>
         <span className="integration-connector" aria-hidden="true">
           +
         </span>
-        <div>
-          <img
-            src="/images/apple-shortcuts.png"
-            alt=""
-            width="44"
-            height="44"
-          />
-          <span>Apple Shortcuts</span>
-        </div>
+        <strong>Apple Shortcuts</strong>
       </div>
       <div
         className="motion-wave"
@@ -107,12 +90,6 @@ function ReceiptExample() {
         <span>EXAMPLE</span>
       </div>
       <div className="receipt-assist">
-        <img
-          src="/images/apple-intelligence.png"
-          alt=""
-          width="48"
-          height="48"
-        />
         <div>
           <strong>Apple Intelligence</strong>
           <span>Optional help with unclear totals on supported iPhones.</span>
@@ -223,7 +200,7 @@ const copy = [
       "Choose an action. Siri asks for missing details such as category and amount.",
       "Run it by voice or a tap. Supported actions can also be assigned to the Action Button, Control Center, or Lock Screen.",
     ],
-    note: "App Intents are the connection between Spendy and Apple’s system. Quick Add and Scan open the app; spending and budget checks return recorded results. Availability depends on your device and system settings.",
+    note: "Spendy connects with Siri and Apple Shortcuts so familiar actions are close by. Quick Add and Scan open the app, while spending and budget questions use the records already on your iPhone. Availability depends on your device and system settings.",
   },
   {
     title: "Less typing. Still your call.",
@@ -251,7 +228,7 @@ const copy = [
     steps: [
       "Enable the reminders that are useful to you and allow notifications.",
       "Keep renewal dates and recorded payments up to date.",
-      "Export a JSON backup from Settings when you want your own copy.",
+      "Export a backup from Settings whenever you want your own copy.",
     ],
     note: "Voice logging is available inside Spendy too: speak entries such as ‘Groceries 200 and Fuel 500’, then review before saving. Speech recognition depends on permissions and device capabilities; Apple speech services may be used when on-device recognition is unavailable.",
   },
@@ -279,26 +256,20 @@ export function EverydayTools() {
         <div>
           <p className="eyebrow">03 / A FEW WAYS IN</p>
           <h2>
-            Less friction.
+            Made to fit
             <br />
-            <span className="muted">More everyday.</span>
+            <span className="muted">your iPhone.</span>
           </h2>
         </div>
         <p>
-          A voice command, a receipt photo, or a tap on a widget. Explore the
-          way that fits your day.
+          Use your voice, scan a receipt, or glance at a widget. Pick whatever
+          feels easiest in the moment.
         </p>
       </Reveal>
       <FeatureTabs
         id="access-tool"
         label="Ways to use Spendy"
         items={["Siri & Shortcuts", "Scan a receipt", "Widgets", "More ways"]}
-        icons={[
-          ["/images/siri-orb.png", "/images/apple-shortcuts.png"],
-          ["/images/apple-intelligence.png"],
-          null,
-          null,
-        ]}
         selected={selected}
         onSelect={(index) => {
           setSelected(index);
@@ -328,7 +299,7 @@ export function EverydayTools() {
                 <div>
                   <span>02</span>
                   <h3>Your own copy.</h3>
-                  <p>Your entries → JSON backup</p>
+                  <p>Your entries → Your backup file</p>
                 </div>
               </div>
             )}
@@ -344,7 +315,7 @@ export function EverydayTools() {
             <details className="more-details">
               <summary>
                 {selected === 0
-                  ? "How App Intents connect it"
+                  ? "How it works with Siri and Shortcuts"
                   : selected === 1
                     ? "Receipt assistance and accuracy"
                     : selected === 2
@@ -362,12 +333,6 @@ export function EverydayTools() {
                 type="button"
                 onClick={() => navigate("#receipt")}
               >
-                <img
-                  src="/images/apple-intelligence.png"
-                  alt=""
-                  width="44"
-                  height="44"
-                />
                 <span>
                   <small>NEXT / RECEIPTS</small>
                   <strong>See how receipt review works</strong>

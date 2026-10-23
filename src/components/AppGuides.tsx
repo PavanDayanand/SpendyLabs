@@ -20,14 +20,13 @@ export function AppGuides() {
         <div>
           <p className="eyebrow">01 / THE APP, AT A GLANCE</p>
           <h2>
-            A place for each part
+            Everything you need
             <br />
-            <span className="muted">of your money.</span>
+            <span className="muted">in one friendly place.</span>
           </h2>
         </div>
         <p>
-          Pick a part of Spendy. See what it does, where to find it, and how to
-          get started.
+          Choose what you want to do and see how Spendy makes it feel simple.
         </p>
       </Reveal>
       <FeatureTabs
