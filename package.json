@@ -10,11 +10,14 @@
     "dev": "concurrently -k -n API,WEB \"tsx watch server/index.ts\" \"vite --host 127.0.0.1\"",
     "build": "tsc --noEmit && vite build",
     "start": "node --import tsx server/index.ts",
-    "test": "node --import tsx --test server/waitlist.test.ts",
+    "test": "node --import tsx --test server/*.test.ts",
     "waitlist:export": "node --import tsx scripts/export-waitlist.ts",
+    "music:spendy": "node --env-file=.env.local scripts/generate-spendy-soundtrack.mjs",
+    "music:spendy-local": "node scripts/score-spendy.mjs",
     "format": "prettier --write src server scripts index.html vite.config.ts tsconfig.json package.json"
   },
   "dependencies": {
+    "@elevenlabs/elevenlabs-js": "^2.74.0",
     "@reduxjs/toolkit": "^2.13.0",
     "@rive-app/webgl2": "^2.40.1",
     "express": "^5.3.0",

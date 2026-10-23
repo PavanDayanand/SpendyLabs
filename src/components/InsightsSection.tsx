@@ -1,3 +1,4 @@
+import { SpendyInsightsLogo } from "./SpendyInsightsLogo";
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { insightGuides } from "../data/insightGuides";
@@ -240,14 +241,7 @@ export function InsightsSection() {
         <Reveal className="section-heading compact-heading">
           <div>
             <div className="insights-brand">
-              <img
-                src="/images/SpendyInsight.png"
-                alt=""
-                width="64"
-                height="64"
-                loading="lazy"
-                decoding="async"
-              />
+              <SpendyInsightsLogo />
               <p className="eyebrow">02 / SPENDY INSIGHTS</p>
             </div>
             <h2>

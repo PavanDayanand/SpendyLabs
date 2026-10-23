@@ -82,13 +82,24 @@ Social and support destinations in `data/links.ts` follow the native app. Develo
 
 The API validates email and explicit consent, normalises the address, deduplicates it, and saves signup/consent timestamps. It has a hidden bot field, a small request-body limit, and 10 requests per IP per 15 minutes. Database failure produces an error, not a success screen. Emails are never written to application logs or exposed by an API read endpoint.
 
-Default database: `.data/waitlist.sqlite`, ignored by Git. Set `WAITLIST_DB_PATH` to change it. Keep the database and exports private and backed up. The API's rate limit is in memory; it resets with a restart.
+Local development defaults to `.data/waitlist.sqlite`, ignored by Git. Production can instead save to the owner's private Google Sheet through a protected Apps Script web app. The Sheet is never linked from the public site and the Apps Script secret stays in server-side environment variables.
+
+### Private Google Sheet setup
+
+1. In the private **Spendy Waitlist** spreadsheet, open **Extensions → Apps Script**.
+2. Replace the editor contents with `google-apps-script/Code.gs`, then save.
+3. In **Project Settings → Script properties**, add `WAITLIST_SECRET` with a long random value.
+4. Choose **Deploy → New deployment → Web app**. Set **Execute as** to yourself and access to **Anyone**. Copy the `/exec` URL.
+5. In Vercel, add `GOOGLE_SHEETS_WEB_APP_URL` and `GOOGLE_SHEETS_WAITLIST_SECRET`. The secret must exactly match the script property.
+6. Redeploy and submit one test address. The script creates a private `Waitlist` tab with email, signup time, consent time, and consent version. Duplicate addresses are not added twice.
+
+Do not publish the Sheet or put the Apps Script URL or secret in Vite `VITE_` variables. To export later, use **File → Download → Comma Separated Values (.csv)** while viewing the `Waitlist` tab.
 
 ## Before public hosting
 
 This is a local project; it has not been deployed.
 
-1. Use a Node server with persistent storage. Static hosting alone cannot save this waitlist. Run the server from this folder, build first, then `npm start`.
+1. Configure the private Google Sheet bridge above before enabling the public waitlist. Vercel deploys `api/waitlist.ts` as the server-side waitlist function.
 2. Set `HOST` to your host's bind address (for example `0.0.0.0` in a container), `PORT`, and `WAITLIST_DB_PATH` on a persistent disk.
 3. Configure HTTPS and, when behind a proxy, Express's `trust proxy` to the precise proxy topology so rate limiting uses the real client IP. Do not blindly set it to `true`.
 4. Add your public contact/deletion-request address and a working unsubscribe process. Update the Privacy page to describe the actual host, retention, email provider, and process before collecting public signups.

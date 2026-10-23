@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Hero } from "../components/Hero";
+import { TrailerSection } from "../components/TrailerSection";
 import { SpendingStory } from "../components/SpendingStory";
 import { InsightsSection } from "../components/InsightsSection";
 import { AppGuides } from "../components/AppGuides";
@@ -11,6 +12,7 @@ export function HomePage() {
   return (
     <div className="compact-home">
       <Hero />
+      <TrailerSection />
       <AppGuides />
       <SpendingStory />
       <InsightsSection />

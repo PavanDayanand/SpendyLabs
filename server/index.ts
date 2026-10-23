@@ -3,12 +3,14 @@ import rateLimit from "express-rate-limit";
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { openWaitlist, saveSignup, validateSignup } from "./waitlist";
+import { saveSignupToGoogleSheet } from "./googleSheetsWaitlist";
 
 const app = express();
 const port = Number(process.env.PORT || 3001);
-const database = openWaitlist(
-  process.env.WAITLIST_DB_PATH || ".data/waitlist.sqlite",
-);
+const useGoogleSheets = Boolean(process.env.GOOGLE_SHEETS_WEB_APP_URL);
+const database = useGoogleSheets
+  ? null
+  : openWaitlist(process.env.WAITLIST_DB_PATH || ".data/waitlist.sqlite");
 app.disable("x-powered-by");
 app.use(express.json({ limit: "2kb" }));
 app.use((_request, response, next) => {
@@ -27,7 +29,7 @@ const signupLimit = rateLimit({
     message: "A few too many attempts. Please try again in 15 minutes.",
   },
 });
-app.post("/api/waitlist", signupLimit, (request, response) => {
+app.post("/api/waitlist", signupLimit, async (request, response) => {
   response.setHeader("Cache-Control", "no-store");
   if (
     !request.body ||
@@ -52,7 +54,11 @@ app.post("/api/waitlist", signupLimit, (request, response) => {
     return;
   }
   try {
-    saveSignup(database, request.body.email);
+    if (useGoogleSheets) {
+      await saveSignupToGoogleSheet(request.body.email);
+    } else {
+      saveSignup(database!, request.body.email);
+    }
     // The same response for duplicate emails avoids disclosing membership.
     response.status(200).json({ message: "You're on the list." });
   } catch {
@@ -90,7 +96,7 @@ const server = app.listen(port, process.env.HOST || "127.0.0.1", () =>
 );
 function stop() {
   server.close(() => {
-    database.close();
+    database?.close();
     process.exit(0);
   });
 }
