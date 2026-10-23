@@ -1,40 +1,35 @@
-import { saveSignupToGoogleSheet } from "../server/googleSheetsWaitlist";
-
 type WaitlistBody = {
   email?: unknown;
   consent?: unknown;
   website?: unknown;
 };
 
-type VercelRequest = {
-  method?: string;
-  headers: Record<string, string | string[] | undefined>;
-  body?: unknown;
-};
-
-type VercelResponse = {
-  setHeader(name: string, value: string): void;
-  status(code: number): VercelResponse;
-  json(body: { message: string }): void;
-};
-
 type AttemptWindow = { count: number; resetsAt: number };
 const attempts = new Map<string, AttemptWindow>();
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1_000;
 const RATE_LIMIT_MAX = 10;
+const CONSENT_VERSION = "2026-10-10";
 
-function requestIp(request: VercelRequest) {
-  const forwarded = request.headers["x-forwarded-for"];
-  const value = Array.isArray(forwarded) ? forwarded[0] : forwarded;
-  return value?.split(",")[0]?.trim() || "unknown";
+function json(message: string, status: number) {
+  return Response.json(
+    { message },
+    {
+      status,
+      headers: {
+        "Cache-Control": "no-store",
+        "X-Content-Type-Options": "nosniff",
+      },
+    },
+  );
 }
 
-function isRateLimited(request: VercelRequest) {
+function isRateLimited(request: Request) {
   const now = Date.now();
-  const ip = requestIp(request);
-  const current = attempts.get(ip);
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+  const key = ip || "unknown";
+  const current = attempts.get(key);
   if (!current || current.resetsAt <= now) {
-    attempts.set(ip, { count: 1, resetsAt: now + RATE_LIMIT_WINDOW_MS });
+    attempts.set(key, { count: 1, resetsAt: now + RATE_LIMIT_WINDOW_MS });
     return false;
   }
   current.count += 1;
@@ -53,66 +48,65 @@ function validateSignup(body: WaitlistBody) {
   return null;
 }
 
-export default async function handler(
-  request: VercelRequest,
-  response: VercelResponse,
-) {
-  response.setHeader("Cache-Control", "no-store");
-  response.setHeader("X-Content-Type-Options", "nosniff");
+async function saveSignup(email: string) {
+  const url = process.env.GOOGLE_SHEETS_WEB_APP_URL;
+  const secret = process.env.GOOGLE_SHEETS_WAITLIST_SECRET;
+  if (!url || !secret) throw new Error("Waitlist storage is not configured.");
 
-  if (request.method !== "POST") {
-    response.status(405).json({ message: "Method not allowed." });
-    return;
+  const response = await fetch(url, {
+    method: "POST",
+    redirect: "follow",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify({
+      email: email.trim().toLowerCase(),
+      consentVersion: CONSENT_VERSION,
+      secret,
+    }),
+    signal: AbortSignal.timeout(8_000),
+  });
+  const text = await response.text();
+  let result: { ok?: boolean };
+  try {
+    result = JSON.parse(text) as { ok?: boolean };
+  } catch {
+    throw new Error("Waitlist storage returned an unreadable response.");
   }
+  if (!response.ok || result.ok !== true) {
+    throw new Error("Waitlist storage did not confirm the save.");
+  }
+}
+
+export default async function handler(request: Request) {
+  if (request.method !== "POST") return json("Method not allowed.", 405);
   if (isRateLimited(request)) {
-    response.status(429).json({
-      message: "A few too many attempts. Please try again in 15 minutes.",
-    });
-    return;
+    return json(
+      "A few too many attempts. Please try again in 15 minutes.",
+      429,
+    );
   }
 
-  const rawSize = request.headers["content-length"];
-  const size = Number(Array.isArray(rawSize) ? rawSize[0] : rawSize || 0);
-  if (size > 2_048) {
-    response.status(413).json({ message: "Request is too large." });
-    return;
-  }
+  const size = Number(request.headers.get("content-length") || 0);
+  if (size > 2_048) return json("Request is too large.", 413);
 
-  let body = request.body as WaitlistBody;
-  if (typeof request.body === "string") {
-    try {
-      body = JSON.parse(request.body) as WaitlistBody;
-    } catch {
-      response
-        .status(400)
-        .json({ message: "Please enter your email and consent." });
-      return;
-    }
+  let body: WaitlistBody;
+  try {
+    body = (await request.json()) as WaitlistBody;
+  } catch {
+    return json("Please enter your email and consent.", 400);
   }
   if (!body || typeof body !== "object" || Array.isArray(body)) {
-    response
-      .status(400)
-      .json({ message: "Please enter your email and consent." });
-    return;
+    return json("Please enter your email and consent.", 400);
   }
   if (body.website) {
-    response
-      .status(400)
-      .json({ message: "Could not submit this form. Please try again." });
-    return;
+    return json("Could not submit this form. Please try again.", 400);
   }
   const error = validateSignup(body);
-  if (error) {
-    response.status(400).json({ message: error });
-    return;
-  }
+  if (error) return json(error, 400);
 
   try {
-    await saveSignupToGoogleSheet(body.email as string);
-    response.status(200).json({ message: "You're on the list." });
+    await saveSignup(body.email as string);
+    return json("You're on the list.", 200);
   } catch {
-    response.status(503).json({
-      message: "Could not save your signup. Please try again shortly.",
-    });
+    return json("Could not save your signup. Please try again shortly.", 503);
   }
 }
