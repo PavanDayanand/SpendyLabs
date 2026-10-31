@@ -1,0 +1,12 @@
+.refraction-preview { background: #050505; color: #fafafa; padding: 4rem 0; min-height: 75vh; }
+.refraction-preview__intro, .refraction-preview__note { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+.refraction-preview h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.1; margin: 1rem 0; }
+.refraction-preview__intro > p, .refraction-preview__note { color: #b7b7b7; }
+.refraction-preview__controls { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; margin-top: 2rem; }
+.refraction-preview__controls button { cursor: pointer; padding: .7rem 1rem; border: 1px solid #555; border-radius: 999px; color: #fff; background: #171717; font: inherit; }
+.refraction-preview__controls button[aria-pressed="true"] { color: #050505; background: #fff; }
+.refraction-preview__controls label { display: flex; gap: .5rem; align-items: center; padding: .5rem; }
+.refraction-preview__controls :focus-visible { outline: 2px solid #a9ceff; outline-offset: 4px; }
+.refraction-preview__canvas { background: #050505; padding: 3rem; container-type: inline-size; overflow: hidden; }
+.refraction-preview__note { font-size: .875rem; }
+@media (max-width: 600px) { .refraction-preview__canvas { padding: 3rem 1rem; } }

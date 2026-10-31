@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { HomePage } from "./pages/HomePage";
 import { PrivacyPage } from "./pages/PrivacyPage";
 import { UpdatesPage } from "./pages/UpdatesPage";
+
+const RefractedPreviewPage = lazy(() => import("./pages/RefractedPreviewPage"));
 
 export default function App() {
   const { pathname, hash, state } = useLocation();
@@ -13,6 +15,7 @@ export default function App() {
       "/": "Spendy | Money makes sense.",
       "/updates": "Build notes | Spendy",
       "/privacy": "Privacy Policy | Spendy",
+      "/preview/refracted": "Refracted text preview | Spendy",
     };
     document.title = titles[pathname] || "Page not found | Spendy";
     if (state?.preserveScroll) return;
@@ -27,6 +30,7 @@ export default function App() {
       <Header />
       <main id="main">
         <Routes>
+          <Route path="/preview/refracted" element={<Suspense fallback={<p>Loading preview…</p>}><RefractedPreviewPage /></Suspense>} />
           <Route path="/" element={<HomePage />} />
           <Route path="/updates" element={<UpdatesPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />

@@ -1,9 +1,24 @@
+import { lazy, Suspense } from "react";
+import "./refracted-wordmark.css";
 import { Reveal } from "./Reveal";
 import { SpendyMascot } from "./SpendyMascot";
+
+const RefractedWordmark = lazy(() =>
+  import("./RefractedWordmark").then(module => ({ default: module.RefractedWordmark })),
+);
 
 export function Hero() {
   return (
     <>
+      <Suspense fallback={
+        <div className="refracted-wordmark">
+          <div className="refracted-wordmark__canvas">
+            <span className="refracted-wordmark__placeholder">SPENDY</span>
+          </div>
+        </div>
+      }>
+        <RefractedWordmark />
+      </Suspense>
       <section className="hero section">
         <Reveal className="hero-copy">
           <div className="hero-identity">

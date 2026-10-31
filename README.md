@@ -80,6 +80,8 @@ Social and support destinations in `data/links.ts` follow the native app. Develo
 
 ## Waitlist behaviour
 
+For the complete production setup and handoff instructions, see [WAITLIST_HANDOFF.md](./WAITLIST_HANDOFF.md).
+
 The API validates email and explicit consent, normalises the address, deduplicates it, and saves signup/consent timestamps. It has a hidden bot field, a small request-body limit, and 10 requests per IP per 15 minutes. Database failure produces an error, not a success screen. Emails are never written to application logs or exposed by an API read endpoint.
 
 Local development defaults to `.data/waitlist.sqlite`, ignored by Git. Production can instead save to the owner's private Google Sheet through a protected Apps Script web app. The Sheet is never linked from the public site and the Apps Script secret stays in server-side environment variables.
@@ -95,11 +97,11 @@ Local development defaults to `.data/waitlist.sqlite`, ignored by Git. Productio
 
 Do not publish the Sheet or put the Apps Script URL or secret in Vite `VITE_` variables. To export later, use **File → Download → Comma Separated Values (.csv)** while viewing the `Waitlist` tab.
 
-## Before public hosting
+## Production hosting
 
-This is a local project; it has not been deployed.
+The website is deployed at **https://spendy-ebon.vercel.app/**. GitHub `main` is connected to Vercel, and production waitlist signups are stored through the protected Apps Script bridge described above.
 
-1. Configure the private Google Sheet bridge above before enabling the public waitlist. Vercel deploys `api/waitlist.ts` as the server-side waitlist function.
+1. Keep the private Google Sheet bridge configured before enabling the public waitlist. Vercel deploys `api/waitlist.ts` as the server-side waitlist function.
 2. Set `HOST` to your host's bind address (for example `0.0.0.0` in a container), `PORT`, and `WAITLIST_DB_PATH` on a persistent disk.
 3. Configure HTTPS and, when behind a proxy, Express's `trust proxy` to the precise proxy topology so rate limiting uses the real client IP. Do not blindly set it to `true`.
 4. Add your public contact/deletion-request address and a working unsubscribe process. Update the Privacy page to describe the actual host, retention, email provider, and process before collecting public signups.
@@ -127,6 +129,6 @@ After editing the policy, sync the native resource before building the app:
 node scripts/sync-privacy-policy.mjs '../SpendyIOS/Spendy/Resources/privacy-policy.json'
 ```
 
-The site is still unpublished. The public URL, hosting details, and waitlist removal/unsubscribe process must be resolved before public collection. Configuring these fields does not deploy the site or update App Store Connect automatically.
+The site is published at **https://spendy-ebon.vercel.app/**. The waitlist removal/unsubscribe process must stay accurate before launch emails are sent. Website deployment does not update App Store Connect automatically.
 
 The website footer and Settings → Legal also link directly to Apple’s standard app EULA at https://www.apple.com/legal/internet-services/itunes/dev/stdeula/. That link is for the App Store app; it is not a separate set of website terms. No App Store Connect licence settings were changed.

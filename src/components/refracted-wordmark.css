@@ -1,0 +1,26 @@
+/* A single glass wordmark introduces the homepage before the product story. */
+.refracted-wordmark {
+  background: #050505;
+  color: #fff;
+  padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 5vw, 4rem);
+  overflow: hidden;
+}
+.refracted-wordmark__canvas {
+  container-type: inline-size;
+  max-width: 900px;
+  margin-inline: auto;
+  line-height: 0;
+}
+.refracted-wordmark__canvas > .refracted-text {
+  width: 100%;
+}
+
+.refracted-wordmark__placeholder {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1120 / 129;
+  font-family: "ReactDrops Square Display", "Arial Black", sans-serif;
+  font-weight: 900;
+  font-size: 15cqi;
+  line-height: 1;
+}
