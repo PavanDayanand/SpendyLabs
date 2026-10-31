@@ -1,5 +1,6 @@
+import { useSiteReducedMotion } from "../AnimationPreferences";
 import type { ReactNode } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 
 // One small, reusable animation: lift content into view once.
 export function Reveal({
@@ -11,14 +12,14 @@ export function Reveal({
   className?: string;
   delay?: number;
 }) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useSiteReducedMotion();
   return (
     <motion.div
       className={className}
       initial={reduceMotion ? false : { opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: reduceMotion ? 0 : 0.6, delay: reduceMotion ? 0 : delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
     </motion.div>

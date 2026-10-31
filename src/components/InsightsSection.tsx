@@ -1,6 +1,7 @@
+import { useSiteReducedMotion } from "../AnimationPreferences";
 import { SpendyInsightsLogo } from "./SpendyInsightsLogo";
 import { useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { insightGuides } from "../data/insightGuides";
 import { Reveal } from "./Reveal";
 import { FeaturePanel, FeatureTabs } from "./FeatureTabs";
@@ -51,7 +52,7 @@ const topics = [
 ];
 
 function InsightCalculator({ selected }: { selected: number }) {
-  const reduce = useReducedMotion();
+  const reduce = useSiteReducedMotion();
   const [entries, setEntries] = useState([true, true, true]);
   const [current, setCurrent] = useState(3000);
   const [spent, setSpent] = useState(6000);

@@ -1525,3 +1525,15 @@ html {
     height: 52px;
   }
 }
+
+/* One site-wide preference covers CSS motion as well as canvas components. */
+html[data-animations-paused] *, html[data-animations-paused] *::before, html[data-animations-paused] *::after {
+  animation-play-state: paused !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+html[data-animations-paused] { scroll-behavior: auto; }
+.footer-animation-toggle { border: 1px solid currentColor; border-radius: 999px; padding: 12px 18px; background: transparent; color: inherit; font: inherit; font-size: 13px; margin: 24px 0; }
+.footer-animation-toggle[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.trailer-paused { position: absolute; inset: 0; display: grid; align-content: center; justify-items: center; gap: 12px; color: #fff; }
+.trailer-paused a { text-decoration: underline; }

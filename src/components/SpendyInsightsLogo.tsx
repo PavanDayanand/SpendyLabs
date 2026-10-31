@@ -1,3 +1,4 @@
+import { useSiteReducedMotion } from "../AnimationPreferences";
 import { useEffect, useRef, useState } from "react";
 import type { Rive } from "@rive-app/webgl2";
 import wasmUrl from "@rive-app/webgl2/rive.wasm?url";
@@ -5,16 +6,8 @@ import wasmUrl from "@rive-app/webgl2/rive.wasm?url";
 /** Replays the ribbon reveal occasionally while the Insights heading is visible. */
 export function SpendyInsightsLogo() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [reduceMotion, setReduceMotion] = useState(true);
+  const reduceMotion = useSiteReducedMotion();
   const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setReduceMotion(preference.matches);
-    update();
-    preference.addEventListener("change", update);
-    return () => preference.removeEventListener("change", update);
-  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;

@@ -1,6 +1,8 @@
+import { useAnimationPreferences } from "../AnimationPreferences";
 import { Link } from "react-router-dom";
 import { appTermsURL, socialLinks } from "../data/links";
 export function Footer() {
+  const { paused, toggle } = useAnimationPreferences();
   return (
     <footer className="footer">
       <div className="footer-top">
@@ -11,6 +13,9 @@ export function Footer() {
         </p>
         <a href="/#waitlist">GET IN EARLY</a>
       </div>
+      <button type="button" className="footer-animation-toggle" aria-pressed={paused} onClick={toggle}>
+        {paused ? "Resume all animations" : "Pause all animations"}
+      </button>
       <nav className="social-links" aria-label="Follow and support Spendy">
         {socialLinks.map((link) => (
           <a

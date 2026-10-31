@@ -1,17 +1,20 @@
-import { useEffect, useState } from "react";
+import { useSiteReducedMotion } from "../AnimationPreferences";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { widgetGuides, siriActions } from "../data/appFeatures";
 import { Reveal } from "./Reveal";
 import { FeaturePanel, FeatureTabs } from "./FeatureTabs";
 import { SpendyWidgetPreview } from "./SpendyWidgetPreview";
+
+const ReceiptExample = lazy(() => import("./ReceiptPointerDemo"));
 
 const ids = ["siri", "receipt", "widgets", "extras"];
 
 function SiriExample() {
   const [action, setAction] = useState(0);
   const [replay, setReplay] = useState(0);
-  const reduce = useReducedMotion();
+  const reduce = useSiteReducedMotion();
   const shortcut = siriActions[action];
   return (
     <div className="access-example siri-example">
@@ -72,69 +75,6 @@ function SiriExample() {
       <p className="shortcut-result">{shortcut.result}</p>
       <div className="demo-footer">
         <span>Visual example · no microphone needed.</span>
-        <button onClick={() => setReplay(replay + 1)}>
-          Replay <span aria-hidden="true">↻</span>
-        </button>
-      </div>
-    </div>
-  );
-}
-
-function ReceiptExample() {
-  const [replay, setReplay] = useState(0);
-  const reduce = useReducedMotion();
-  return (
-    <div className="access-example scan-example">
-      <div className="demo-topline">
-        <span>PHOTO → REVIEW → RECORD</span>
-        <span>EXAMPLE</span>
-      </div>
-      <div className="receipt-assist">
-        <div>
-          <strong>Apple Intelligence</strong>
-          <span>Optional help with unclear totals on supported iPhones.</span>
-        </div>
-      </div>
-      <div className="motion-receipt" key={replay}>
-        <div className="sample-receipt">
-          <span>THE EVERYDAY CAFÉ</span>
-          <i />
-          <i />
-          <i />
-          <div>
-            <span>Total</span>
-            <strong>₹750</strong>
-          </div>
-          <motion.div
-            className="scan-line"
-            aria-hidden="true"
-            initial={{ top: "12%", opacity: 0 }}
-            whileInView={{
-              top: reduce ? "86%" : ["12%", "86%"],
-              opacity: reduce ? 0 : [0, 1, 1, 0],
-            }}
-            viewport={{ once: true }}
-            transition={{ duration: reduce ? 0 : 1.3 }}
-          />
-        </div>
-        <motion.div
-          className="scan-output"
-          initial={reduce ? false : { opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: reduce ? 0 : 0.4, delay: reduce ? 0 : 1.1 }}
-        >
-          <span>Ready for your review</span>
-          <strong>₹750</strong>
-          <p>
-            Category · Account
-            <br />
-            Note · Date
-          </p>
-        </motion.div>
-      </div>
-      <div className="demo-footer">
-        <span>You check it before saving.</span>
         <button onClick={() => setReplay(replay + 1)}>
           Replay <span aria-hidden="true">↻</span>
         </button>
@@ -285,7 +225,7 @@ export function EverydayTools() {
             {selected === 0 ? (
               <SiriExample />
             ) : selected === 1 ? (
-              <ReceiptExample />
+              <Suspense fallback={<div className="access-example">Loading receipt preview…</div>}><ReceiptExample /></Suspense>
             ) : selected === 2 ? (
               <WidgetExample />
             ) : (

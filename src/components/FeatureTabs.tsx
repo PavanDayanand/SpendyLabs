@@ -1,9 +1,9 @@
+import { useSiteReducedMotion } from "../AnimationPreferences";
 import { useId, type ReactNode } from "react";
 import {
   AnimatePresence,
   LayoutGroup,
   motion,
-  useReducedMotion,
 } from "motion/react";
 
 export function FeatureTabs({
@@ -22,7 +22,7 @@ export function FeatureTabs({
   onSelect: (index: number) => void;
 }) {
   const group = useId();
-  const reduce = useReducedMotion();
+  const reduce = useSiteReducedMotion();
   return (
     <LayoutGroup id={group}>
       <div className="feature-tabs" role="tablist" aria-label={label}>
@@ -88,7 +88,7 @@ export function FeaturePanel({
   selected: number;
   children: ReactNode;
 }) {
-  const reduce = useReducedMotion();
+  const reduce = useSiteReducedMotion();
   return (
     <div
       id={`${id}-panel`}

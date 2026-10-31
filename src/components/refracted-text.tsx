@@ -1,3 +1,4 @@
+import { useSiteReducedMotion } from "../AnimationPreferences";
 /*!
 ReactDrops Component License 1.0
 
@@ -201,6 +202,7 @@ export function RefractedText({
   style,
   ...props
 }: RefractedTextProps) {
+  const siteReducedMotion = useSiteReducedMotion();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rendererRef = useRef<RefractedRenderer | null>(null);
   const requestRender = useRef(() => {});
@@ -253,6 +255,7 @@ export function RefractedText({
     typography,
   ]);
   const options = useRef({
+    siteReducedMotion,
     theme,
     topColor,
     bottomColor,
@@ -278,6 +281,7 @@ export function RefractedText({
   });
   const [failed, setFailed] = useState(false);
   options.current = {
+    siteReducedMotion,
     theme,
     topColor,
     bottomColor,
@@ -408,6 +412,7 @@ export function RefractedText({
     let pointerClientY = 0;
     let pointerDirty = false;
     const movePointer = (event: PointerEvent) => {
+      if (options.current.siteReducedMotion) return;
       pointerClientX = event.clientX;
       pointerClientY = event.clientY;
       pointerDirty = true;
@@ -425,6 +430,11 @@ export function RefractedText({
     const tick = (now: number) => {
       frame = 0;
       if (disposed || inactive() || !inView || document.hidden || !fontReady) return;
+      const reduced = motion.matches || options.current.siteReducedMotion;
+      if (reduced) {
+        pointerDirty = false;
+        pointer.influence = pointer.targetInfluence = 0;
+      }
       // Pointer events can arrive faster than frames. Measure layout once for
       // the latest event, instead of forcing a rect read on every mouse move.
       if (pointerDirty) {
@@ -468,17 +478,17 @@ export function RefractedText({
         previous &&
         animateBeam &&
         !paused &&
-        !motion.matches &&
+        !reduced &&
         document.visibilityState === 'visible'
       ) {
         elapsed += delta;
       }
-      if (fontReady && previous && !motion.matches && document.visibilityState === 'visible') {
+      if (fontReady && previous && !reduced && document.visibilityState === 'visible') {
         revealElapsed += delta;
       }
       previous = now;
-      const follow = motion.matches ? 1 : 1 - Math.exp(-delta * 20);
-      const fade = motion.matches
+      const follow = reduced ? 1 : 1 - Math.exp(-delta * 20);
+      const fade = reduced
         ? 1
         : 1 - Math.exp(-delta * (pointer.targetInfluence > pointer.influence ? 16 : 8));
       pointer.x += (pointer.targetX - pointer.x) * follow;
@@ -489,7 +499,7 @@ export function RefractedText({
       if (Math.abs(pointer.targetInfluence - pointer.influence) < 0.0001)
         pointer.influence = pointer.targetInfluence;
       const targetTheme = theme === 'light' || (theme === 'auto' && autoLightTheme) ? 1 : 0;
-      themeMix += (targetTheme - themeMix) * (motion.matches ? 1 : 1 - Math.exp(-delta * 9));
+      themeMix += (targetTheme - themeMix) * (reduced ? 1 : 1 - Math.exp(-delta * 9));
       if (Math.abs(targetTheme - themeMix) < 0.0001) themeMix = targetTheme;
       // The beam shares one opening clock across the word. The character
       // stagger remains independent, and static text keeps its light cycle.
@@ -499,7 +509,7 @@ export function RefractedText({
       const settledTime = flowLength;
       const lightTime = !animateBeam
         ? settledTime
-        : motion.matches
+        : reduced
           ? stillFrameTime(duration)
           : reveal
             ? Math.min(elapsed, settledTime)
@@ -517,7 +527,7 @@ export function RefractedText({
           pointer.influence,
           cursorMovesBeam,
           themeMix,
-          motion.matches || !reveal ? Infinity : revealElapsed,
+          reduced || !reveal ? Infinity : revealElapsed,
           liftDuration,
           stagger,
           ease,
@@ -541,7 +551,7 @@ export function RefractedText({
         pointer.y !== pointer.targetY ||
         pointer.influence !== pointer.targetInfluence;
       if (
-        (!motion.matches && (beamMoving || lettersMoving)) ||
+        (!reduced && (beamMoving || lettersMoving)) ||
         pointerMoving ||
         themeMix !== targetTheme
       )
@@ -703,6 +713,7 @@ export function RefractedText({
   useEffect(() => {
     requestRender.current();
   }, [
+    siteReducedMotion,
     theme,
     topColor,
     bottomColor,

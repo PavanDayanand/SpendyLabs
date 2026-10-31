@@ -1,5 +1,6 @@
+import { useSiteReducedMotion } from "../AnimationPreferences";
 import type { ReactNode } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import "./SpendyWidgetPreview.css";
 
 // Example values follow SpendyWidgetSnapshot.preview in the iOS project.
@@ -259,7 +260,7 @@ export function SpendyWidgetPreview({
   name: string;
   size: string;
 }) {
-  const reduce = useReducedMotion();
+  const reduce = useSiteReducedMotion();
   const shape =
     name === "Lock Screen" ? `lock-${size.toLowerCase()}` : size.toLowerCase();
   let content;

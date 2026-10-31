@@ -1,8 +1,9 @@
-import { motion, useReducedMotion } from "motion/react";
+import { useSiteReducedMotion } from "../AnimationPreferences";
+import { motion } from "motion/react";
 
 // These are website diagrams, not screenshots of the app.
 export function SetupVisual({ topic }: { topic: string }) {
-  const reduce = useReducedMotion();
+  const reduce = useSiteReducedMotion();
   if (topic === "Budgets") {
     return (
       <figure className="setup-visual budget-visual">

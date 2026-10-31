@@ -1,11 +1,12 @@
+import { useSiteReducedMotion } from "../AnimationPreferences";
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView, useReducedMotion } from "motion/react";
+import { motion, useInView } from "motion/react";
 import { AnimatedAmount } from "./AnimatedAmount";
 
 export function LedgerDemo() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.3 });
-  const reduce = useReducedMotion();
+  const reduce = useSiteReducedMotion();
   const [step, setStep] = useState(0);
   const [replay, setReplay] = useState(0);
   useEffect(() => {

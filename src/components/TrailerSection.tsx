@@ -1,6 +1,8 @@
+import { useSiteReducedMotion } from "../AnimationPreferences";
 const trailerVideoId = "0umZcuX-WW4";
 
 export function TrailerSection() {
+  const paused = useSiteReducedMotion();
   return (
     <section className="section trailer-section" id="trailer">
       <div className="trailer-heading">
@@ -15,14 +17,14 @@ export function TrailerSection() {
       </div>
 
       <div className="trailer-player">
-        <iframe
+        {paused ? <div className="trailer-paused"><p>Trailer paused</p><a href={`https://youtu.be/${trailerVideoId}`} target="_blank" rel="noreferrer">Watch on YouTube ↗</a></div> : <iframe
           src={`https://www.youtube-nocookie.com/embed/${trailerVideoId}?rel=0&modestbranding=1`}
           title="Spendy app trailer"
           loading="lazy"
           referrerPolicy="strict-origin-when-cross-origin"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
-        />
+        />}
       </div>
 
       <a

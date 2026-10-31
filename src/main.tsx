@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "./store/store";
 import App from "./App";
-import { MotionConfig } from "motion/react";
+import { AnimationPreferences } from "./AnimationPreferences";
 import "./styles.css";
 import "./interactive.css";
 
@@ -12,9 +12,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <MotionConfig reducedMotion="user">
+        <AnimationPreferences>
           <App />
-        </MotionConfig>
+        </AnimationPreferences>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,
