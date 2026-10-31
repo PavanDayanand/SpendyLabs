@@ -16,11 +16,5 @@
 }
 
 .refracted-wordmark__placeholder {
-  display: grid;
-  place-items: center;
   aspect-ratio: 1120 / 129;
-  font-family: "ReactDrops Square Display", "Arial Black", sans-serif;
-  font-weight: 900;
-  font-size: 15cqi;
-  line-height: 1;
 }

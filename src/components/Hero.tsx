@@ -11,9 +11,9 @@ export function Hero() {
   return (
     <>
       <Suspense fallback={
-        <div className="refracted-wordmark">
+        <div className="refracted-wordmark" aria-hidden="true">
           <div className="refracted-wordmark__canvas">
-            <span className="refracted-wordmark__placeholder">SPENDY</span>
+            <div className="refracted-wordmark__placeholder" />
           </div>
         </div>
       }>

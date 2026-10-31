@@ -223,7 +223,8 @@ void main() {
       * smoothstep(.04, .54, softMask) * mix(.16, .05, uLightTheme);
     float spillGlyph = clamp(inkAbove.b / max(inkAbove.a, .01), 0., 1.);
     vec3 spillColor = mix(vec3(.88, .89, .93), vec3(.66, .72, .91), spillGlyph);
-    outColor = vec4(spillColor, lowerSpill);
+    // Premultiply for browser compositing, including fully transparent pixels.
+    outColor = vec4(spillColor * lowerSpill, lowerSpill);
     return;
   }
 
@@ -542,7 +543,7 @@ void main() {
   color = mix(color, beamTint(vec3(.99, .995, 1.)), clamp(lowerRim, 0., .44));
   // The refracted light belongs to the glass. Keep the surrounding black
   // transparent so the bright falloff stays inside each silhouette.
-  outColor = vec4(color, alpha);
+  outColor = vec4(color * alpha, alpha);
 }`;
 
 function compile(gl: WebGL2RenderingContext, type: number, source: string) {
@@ -735,7 +736,8 @@ export function createRefractedRenderer(
   const context = canvas.getContext('webgl2', {
     alpha: true,
     antialias: false,
-    premultipliedAlpha: false,
+    // Keep shader output and the browser compositor in the same alpha format.
+    premultipliedAlpha: true,
   });
   if (!context) return null;
   const gl: WebGL2RenderingContext = context;
