@@ -1,11 +1,8 @@
+import { AppShowcase } from "../components/AppShowcase";
 import { Link } from "react-router-dom";
 import { Hero } from "../components/Hero";
 import { TrailerSection } from "../components/TrailerSection";
 import { OriginStory } from "../components/OriginStory";
-import { SpendingStory } from "../components/SpendingStory";
-import { InsightsSection } from "../components/InsightsSection";
-import { AppGuides } from "../components/AppGuides";
-import { EverydayTools } from "../components/EverydayTools";
 import { WaitlistForm } from "../components/WaitlistForm";
 import { faqs } from "../data/content";
 
@@ -13,12 +10,9 @@ export function HomePage() {
   return (
     <div className="compact-home">
       <Hero />
+      <AppShowcase />
       <TrailerSection />
       <OriginStory />
-      <AppGuides />
-      <SpendingStory />
-      <InsightsSection />
-      <EverydayTools />
       <section className="privacy-strip section">
         <p className="eyebrow">PERSONAL FINANCE. EMPHASIS ON PERSONAL.</p>
         <div>
@@ -35,12 +29,12 @@ export function HomePage() {
       <section className="waitlist section" id="waitlist">
         <div className="waitlist-copy">
           <p className="eyebrow">
-            <span className="status-dot" /> COME BUILD THE NEXT CHAPTER WITH US
+            <span className="status-dot" /> GET IN EARLY
           </p>
           <h2>
-            Join us
+            A little curious?
             <br />
-            <span>from the beginning.</span>
+            <span>Stay in the loop.</span>
           </h2>
           <p>
             Leave your email and we’ll let you know when beta invitations and

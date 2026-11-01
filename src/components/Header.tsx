@@ -23,7 +23,6 @@ export function Header() {
         <a href="/#story">OUR STORY</a>
         <a href="/#guides">THE APP</a>
         <a href="/#insights">INSIGHTS</a>
-        <a href="/#siri">SHORTCUTS</a>
         <NavLink to="/updates">UPDATES</NavLink>
       </nav>
     </>
