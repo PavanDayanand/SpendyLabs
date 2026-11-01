@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import "./refracted-wordmark.css";
+import { SoftText } from "./SoftText";
 import { Reveal } from "./Reveal";
 import { SpendyMascot } from "./SpendyMascot";
 
@@ -28,21 +29,21 @@ export function Hero() {
           <div className="hero-identity">
             <div>
               <p className="eyebrow">SPENDY FOR iOS</p>
-              <p className="hero-identity-note">
-                Minimal by design.
-                <br />
-                Easy for the everyday.
-              </p>
+              <a className="beta-banner" href="#waitlist">
+                <span className="beta-banner-dot" aria-hidden="true" />
+                In development · Join the waitlist
+                <span className="beta-banner-arrow" aria-hidden="true">↗</span>
+              </a>
             </div>
           </div>
           <h1>
-            your money.
+            <SoftText text="your money." />
             <br />
-            <span className="muted">a little clearer.</span>
+            <SoftText text="a little clearer." className="muted" />
           </h1>
           <p className="hero-description">
-            A private place for everyday spending. Made for iPhone. No bank
-            login.
+            Track spending, budgets, and subscriptions in one private iPhone app.
+            No bank login.
           </p>
           <div className="hero-actions">
             <a className="button" href="#guides">

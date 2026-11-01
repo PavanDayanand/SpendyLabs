@@ -1,3 +1,4 @@
+import { WaitlistTicket } from "./WaitlistTicket";
 import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../store/store";
@@ -18,12 +19,14 @@ export function WaitlistForm() {
 
   if (status === "success")
     return (
-      <div className="signup-success" role="status">
-        <h3>You're on the list.</h3>
+      <div className="signup-success">
+        <div role="status">
+        <p>You're on the list.</p>
         <p>
-          Thanks for being here early. We'll email you when beta invitations are
-          ready.
+          We’ll email you when there’s news.
         </p>
+        </div>
+        <WaitlistTicket email={email.trim()} />
         <button
           className="text-button"
           onClick={() => {

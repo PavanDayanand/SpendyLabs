@@ -1,0 +1,21 @@
+import type { ComponentType, ReactNode } from "react";
+export type TearTicketProps = {
+  children?: ReactNode;
+  stub?: ReactNode;
+  image?: string;
+  imageAlt?: string;
+  width?: number;
+  height?: number;
+  stubSize?: number;
+  radius?: number;
+  rotate?: number;
+  tilt?: boolean;
+  tiltMax?: number;
+  background?: string;
+  color?: string;
+  ariaLabel?: string;
+  className?: string;
+  onTear?: () => void;
+};
+declare const TearTicket: ComponentType<TearTicketProps>;
+export default TearTicket;

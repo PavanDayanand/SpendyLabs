@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 
+import { MotionSwitch } from "./MotionSwitch";
 import { useTheme } from "../Theme";
 
 export function Header() {
@@ -18,11 +19,9 @@ export function Header() {
             <span>Spendy</span>
           </Link>
           <div className="header-actions">
-            <button className="theme-toggle" type="button" onClick={toggleTheme}
-              aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}>
-              <span aria-hidden="true">{theme === "light" ? "☾" : "☀"}</span>
-              <span>{theme === "light" ? "Dark" : "Light"}</span>
-            </button>
+            <MotionSwitch value={theme} label="Website appearance"
+              options={[{ value: "light", label: "Light", icon: "☀" }, { value: "dark", label: "Dark", icon: "☾" }]}
+              onChange={(value) => { if (value !== theme) toggleTheme(); }} />
           <a href="/#waitlist" className="header-waitlist">
             Join waitlist <span aria-hidden="true">↗</span>
           </a>

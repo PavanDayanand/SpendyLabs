@@ -1,3 +1,5 @@
+import { AnimatePresence, motion } from "motion/react";
+import { MotionSwitch } from "./MotionSwitch";
 import { useState } from "react";
 import { FanGallery, type FanGalleryItem } from "./fan-gallery";
 import { useSiteReducedMotion } from "../AnimationPreferences";
@@ -119,12 +121,16 @@ export function AppShowcase() {
           </h3>
           <p>Add an expense, scan a receipt, or check your spending.</p>
         </div>
-        <div className="shortcut-view-switch" role="group" aria-label="Shortcut preview">
-          <button type="button" aria-pressed={shortcutView === "result"} onClick={() => setShortcutView("result")}>On iPhone</button>
-          <button type="button" aria-pressed={shortcutView === "actions"} onClick={() => setShortcutView("actions")}>Available actions</button>
+        <div className="shortcut-view-switch">
+          <MotionSwitch value={shortcutView} label="Shortcut preview"
+            options={[{ value: "result", label: "On iPhone" }, { value: "actions", label: "Available actions" }]}
+            onChange={(value) => setShortcutView(value as "result" | "actions")} />
         </div>
         <div className="shortcuts-screen">
-          <div className="shortcuts-system-images">
+          <AnimatePresence mode="wait" initial={false}>
+          <motion.div className="shortcuts-system-images" key={shortcutView}
+            initial={reduceMotion ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: reduceMotion ? 0 : -6 }} transition={{ duration: reduceMotion ? 0 : .16 }}>
             {shortcutView === "result" ? <figure className="siri-system-frame iphone-shortcut-capture">
               <div className="iphone-shortcut-crop">
               <img
@@ -146,7 +152,8 @@ export function AppShowcase() {
                 height="874"
               />
             </figure>}
-          </div>
+          </motion.div>
+          </AnimatePresence>
         </div>
       </article>
       </div>

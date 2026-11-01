@@ -9,6 +9,7 @@ import { AnimationPreferences } from "./AnimationPreferences";
 import "./styles.css";
 import "./interactive.css";
 import "./theme.css";
+import "./components/product-motion.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
