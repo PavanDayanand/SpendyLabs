@@ -66,7 +66,7 @@ scripts/
 
 ## Brand and product explanations
 
-The only displayed image is the original Spendy character (`public/images/app-icon.png`). Feature screenshots and their renderer have been removed. The page explains the real app using short steps, worked examples, and expandable details.
+The page uses real Spendy app screenshots with light and dark variants, the supplied iPhone shortcut confirmation, and the original mascot artwork. Insights and Shortcuts share a compact showcase row.
 
 Copy is checked against the native app’s budget editor, receipt scanner and amount parser, `InsightFactsExtractor`, `InsightComparison`, `BudgetPacingRule`, `CategoryTrendRule`, `InsightDecisionEngine`, and `HomeAttentionInsights`. Insights are deterministic and on-device. The optional Apple Intelligence receipt fallback is described separately.
 
