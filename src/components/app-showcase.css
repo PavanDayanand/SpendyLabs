@@ -20,13 +20,14 @@
   margin: 12px auto 0;
 }
 .spendy-screenshot-fan .fan-gallery-card {
-  background: #e6e6e2;
-  box-shadow: 0 6px 24px #00000012;
+  background: transparent;
+  box-shadow: 0 10px 28px #00000012;
 }
-.spendy-screenshot-fan .fan-gallery-card img {
+.spendy-screenshot-fan .fan-gallery-card .fan-gallery-image {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  padding: 9px;
-  box-sizing: border-box;
+  padding: 0;
 }
 .showcase-caption {
   text-align: center;
@@ -35,118 +36,76 @@
   line-height: 1.7;
   margin: 0 0 48px;
 }
+
 .screenshot-features {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 20px;
+  align-items: stretch;
 }
 .screenshot-features article {
-  background: #e8e8e5;
+  min-width: 0;
+  padding: 32px 24px 24px;
+  background: var(--surface);
   border-radius: 24px;
-  padding: 32px 24px 0;
-  overflow: hidden;
-  scroll-margin-top: 40px;
-}
-.screenshot-feature-copy {
   text-align: center;
-  margin-bottom: 28px;
+  scroll-margin-top: 110px;
+  transition: box-shadow 240ms ease;
 }
-.screenshot-feature-copy h3 {
+.screenshot-feature-copy, .shortcuts-copy { max-width: 390px; margin: 0 auto 24px; }
+.screenshot-features h3 {
   font-size: clamp(1.7rem, 3vw, 2.6rem);
+  line-height: 1.1;
   letter-spacing: -0.04em;
   margin: 12px 0;
 }
-.screenshot-feature-copy > p:last-child {
-  font-size: 0.9rem;
+.screenshot-feature-copy > p:last-child, .shortcuts-copy > p:last-child {
+  font-size: .9rem;
   color: var(--muted);
 }
-.screenshot-features button {
-  display: block;
-  width: min(100%, 260px);
-  padding: 0;
-  border: 0;
-  background: transparent;
-  margin: 0 auto -70px;
-  cursor: zoom-in;
-  border-radius: 28px;
-}
-.screenshot-features img {
+.screenshot-frame, .siri-system-frame { margin: 0 auto; width: min(100%, 220px); }
+.screenshot-frame img, .siri-system-frame img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 28px;
-  box-shadow: 0 18px 60px #00000014;
-}
-.screenshot-features button:focus-visible {
-  outline: 3px solid currentColor;
-  outline-offset: 5px;
-}
-.screenshot-static-gallery {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  padding: 32px 8px;
-}
-.screenshot-static-gallery button {
-  flex: 0 0 140px;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  cursor: zoom-in;
-}
-.screenshot-static-gallery img {
-  width: 100%;
-  border-radius: 14px;
-}
-.screenshot-dialog {
-  border: 0;
-  background: #f3f3f3;
   border-radius: 22px;
-  padding: 48px 12px 12px;
-  max-width: calc(100vw - 24px);
-  max-height: 94svh;
 }
-.screenshot-dialog::backdrop {
-  background: #000b;
+.screenshot-features figure { transition: transform 280ms ease; }
+.shortcut-view-switch {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  margin: 0 0 20px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
 }
-.screenshot-dialog > img {
-  display: block;
-  height: min(78svh, 850px);
-  max-width: 100%;
-  object-fit: contain;
-  border-radius: 12px;
-}
-.screenshot-close {
-  position: absolute;
-  right: 16px;
-  top: 12px;
-  background: transparent;
+.shortcut-view-switch button {
   border: 0;
-  padding: 6px;
-  cursor: pointer;
-  font: inherit;
+  background: transparent;
+  padding: 9px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  min-height: 40px;
 }
-@media (max-width: 600px) {
-  .screenshot-features {
-    gap: 12px;
-  }
-  .screenshot-features article {
-    padding: 24px 10px 0;
-    border-radius: 16px;
-  }
-  .screenshot-feature-copy h3 {
-    font-size: 1.45rem;
-  }
-  .screenshot-feature-copy .eyebrow {
-    font-size: 0.55rem;
-  }
-  .screenshot-feature-copy > p:last-child {
-    font-size: 0.78rem;
-  }
-  .screenshot-features img {
-    border-radius: 16px;
-  }
-  .screenshot-features button {
-    margin-bottom: -30px;
-  }
+.shortcut-view-switch button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.shortcuts-screen { min-height: 400px; }
+.shortcuts-screen .screenshot-frame { height: 350px; overflow: hidden; border-radius: 22px; }
+.iphone-shortcut-crop { aspect-ratio: 1206 / 1471; overflow: hidden; border-radius: 22px; }
+.iphone-shortcut-crop img { border-radius: 0; }
+.siri-system-frame figcaption { margin-top: 12px; color: var(--muted); font-size: .72rem; }
+.screenshot-static-gallery { display: flex; gap: 16px; overflow-x: auto; padding: 32px 8px; }
+.screenshot-static-gallery figure { flex: 0 0 140px; margin: 0; }
+.screenshot-static-gallery img { width: 100%; border-radius: 14px; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .screenshot-features article:hover { box-shadow: 0 14px 40px #00000012; }
+  .screenshot-features article:hover figure { transform: translateY(-5px); }
+}
+.screenshot-features article:focus-within { box-shadow: 0 0 0 2px var(--muted); }
+@media (max-width: 700px) {
+  .screenshot-features { grid-template-columns: 1fr; gap: 16px; }
+  .screenshot-features article { padding: 24px 20px; border-radius: 20px; }
+  .shortcuts-screen { min-height: 360px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .screenshot-features article, .screenshot-features figure { transition: none; }
 }

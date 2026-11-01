@@ -1,3 +1,4 @@
+import { useMediaProtection } from "./useMediaProtection";
 import { lazy, Suspense, useEffect } from "react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import { Header } from "./components/Header";
@@ -9,6 +10,7 @@ import { UpdatesPage } from "./pages/UpdatesPage";
 const RefractedPreviewPage = lazy(() => import("./pages/RefractedPreviewPage"));
 
 export default function App() {
+  useMediaProtection();
   const { pathname, hash, state } = useLocation();
   useEffect(() => {
     const titles: Record<string, string> = {

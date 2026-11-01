@@ -4,16 +4,18 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "./store/store";
 import App from "./App";
+import { ThemeProvider } from "./Theme";
 import { AnimationPreferences } from "./AnimationPreferences";
 import "./styles.css";
 import "./interactive.css";
+import "./theme.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <AnimationPreferences>
-          <App />
+          <ThemeProvider><App /></ThemeProvider>
         </AnimationPreferences>
       </BrowserRouter>
     </Provider>

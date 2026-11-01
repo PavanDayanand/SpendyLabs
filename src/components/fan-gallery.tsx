@@ -12,7 +12,6 @@ export interface FanGalleryItem {
 }
 export interface FanGalleryProps extends Partial<FanOptions> {
   items: FanGalleryItem[];
-  onSelect?: (item: FanGalleryItem) => void;
   /**
    * How cards arrive: a closed stack opening like a swatch book (stack),
    * thrown from a deck (deal), rising from below (rise), flipped in place
@@ -64,7 +63,6 @@ export const fanMotionDefaults = {
 export const FanGallery = forwardRef<FanGalleryHandle, FanGalleryProps>(function FanGallery(
   {
     items,
-    onSelect,
     entrance = fanMotionDefaults.entrance,
     cardWidth = fanDefaults.cardWidth,
     aspectRatio = fanDefaults.aspectRatio,
@@ -221,14 +219,14 @@ export const FanGallery = forwardRef<FanGalleryHandle, FanGalleryProps>(function
             },
           };
           const image = (
-            <img src={item.src} alt={item.alt} draggable={false} loading="lazy" decoding="async" />
+            <img className="fan-gallery-image" src={item.src} alt={item.alt} draggable={false} loading="lazy" decoding="async" />
           );
           return item.href ? (
             <a key={i} {...props} href={item.href}>
               {image}
             </a>
           ) : (
-            <button key={i} {...props} type="button" onClick={() => { playback.current?.activate(i); onSelect?.(item); }}>
+            <button key={i} {...props} type="button" onClick={() => playback.current?.activate(i)}>
               {image}
             </button>
           );

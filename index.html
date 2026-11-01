@@ -2,6 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      // Apply the theme before paint so a saved dark theme never flashes white.
+      try {
+        const saved = localStorage.getItem("spendy-theme");
+        document.documentElement.dataset.theme = saved === "dark" || saved === "light"
+          ? saved : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      } catch { document.documentElement.dataset.theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f3f3f3" />
     <meta

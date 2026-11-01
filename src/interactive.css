@@ -147,7 +147,7 @@
 }
 .ledger-demo {
   padding: 24px;
-  background: #e8e8e5;
+  background: var(--surface);
   min-width: 0;
 }
 .ledger-total {
@@ -599,7 +599,7 @@
 }
 .access-example {
   padding: 28px;
-  background: #e8e8e5;
+  background: var(--surface);
   min-height: 400px;
 }
 .access-story {
@@ -737,7 +737,7 @@
   grid-template-columns: 1fr 1.5fr auto;
   gap: 36px;
   align-items: center;
-  background: #e8e8e5;
+  background: var(--surface);
   padding-top: 36px;
   padding-bottom: 36px;
 }
@@ -992,7 +992,7 @@ html {
   padding: 9px 20px 9px 9px;
   border: 1px solid #d5d5d2;
   border-radius: 999px;
-  background: #e8e8e5;
+  background: var(--surface);
   font-size: 24px;
   font-weight: 600;
   letter-spacing: -0.04em;

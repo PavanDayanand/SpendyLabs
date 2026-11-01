@@ -4,6 +4,10 @@
   --paper: #f3f3f3;
   --muted: #666;
   --line: #dedede;
+  --surface: #e8e8e5;
+  --field: #fff;
+  --soft: #eee;
+  color-scheme: light;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--ink);
   background: var(--paper);
@@ -116,13 +120,13 @@ h4 {
   border: 1px solid var(--ink);
   border-radius: 8px;
   background: var(--ink);
-  color: white;
+  color: var(--paper);
   font-size: 14px;
   font-weight: 550;
   cursor: pointer;
 }
 .button:hover {
-  background: #333;
+  opacity: 0.85;
 }
 .button:disabled {
   opacity: 0.6;
@@ -145,7 +149,7 @@ h4 {
   top: -100px;
   left: 16px;
   padding: 12px;
-  background: white;
+  background: var(--field);
   z-index: 10;
 }
 .skip-link:focus {
@@ -249,7 +253,7 @@ h4 {
   color: #999;
 }
 .hero-brand {
-  background: #e8e8e5;
+  background: var(--surface);
   padding: 24px;
   min-height: 416px;
   display: flex;
@@ -351,7 +355,7 @@ h4 {
   border-left: 1px solid var(--line);
 }
 .guide-navigation button:hover {
-  background: #e8e8e5;
+  background: var(--surface);
 }
 .guide-navigation button[aria-pressed="true"] {
   background: var(--ink);
@@ -603,7 +607,7 @@ details[open] > summary .disclosure {
   display: grid;
   grid-template-columns: 1.6fr 1fr;
   gap: 80px;
-  background: #eee;
+  background: var(--soft);
   border-radius: 14px;
   padding-top: 50px;
   padding-bottom: 50px;
@@ -737,7 +741,7 @@ details[open] > summary .disclosure {
   min-width: 0;
   border: 1px solid #bbb;
   border-radius: 8px;
-  background: white;
+  background: var(--field);
   padding: 14px;
   font-size: 14px;
 }
@@ -1168,7 +1172,7 @@ details[open] > summary .disclosure {
   width: 145px;
   flex-shrink: 0;
   padding: 20px 16px;
-  background: white;
+  background: var(--field);
   border: 1px solid var(--line);
   transform: rotate(-4deg);
 }
@@ -1289,7 +1293,7 @@ details[open] > summary .disclosure {
 }
 .widget-diagram nav a:hover {
   border-bottom-color: var(--ink);
-  background: #eee;
+  background: var(--soft);
 }
 .siri-section {
   border-top: 1px solid var(--line);
@@ -1527,7 +1531,7 @@ details[open] > summary .disclosure {
 }
 .start-links a:hover,
 .start-links a:focus-visible {
-  background: #e8e8e5;
+  background: var(--surface);
 }
 .start-links a:hover .start-link-arrow {
   transform: translate(3px, -3px);
@@ -1719,4 +1723,11 @@ details[open] > summary .disclosure {
 }
 .privacy-page p {
   overflow-wrap: anywhere;
+}
+
+/* Prevent image dragging and the iOS touch-and-hold save callout. */
+img, picture, video, canvas {
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
 }

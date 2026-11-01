@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { FanGallery, type FanGalleryItem } from "./fan-gallery";
 import { useSiteReducedMotion } from "../AnimationPreferences";
 import "./app-showcase.css";
+import { themedScreenshot, useTheme } from "../Theme";
 
 // These are real simulator captures, using a separate synthetic ledger.
 const screenshots: FanGalleryItem[] = [
@@ -18,21 +19,26 @@ const screenshots: FanGalleryItem[] = [
     alt: "Spendy Home with spending summary and recent entries",
   },
   { src: "/images/app/entry.png", alt: "The native Spendy add-entry screen" },
-  { src: "/images/app/home-dark.png", alt: "Spendy Home in dark mode" },
 ];
 
-export function AppShowcase() {
-  const [selectedImage, setSelectedImage] = useState<FanGalleryItem | null>(
-    null,
-  );
-  const dialogRef = useRef<HTMLDialogElement>(null);
-  const reduceMotion = useSiteReducedMotion();
+const insightScreenshot: FanGalleryItem = {
+  src: "/images/app/insights.png",
+  alt: "Spendy Insights sheet with spending patterns and upcoming renewals",
+};
+const shortcutsScreenshot: FanGalleryItem = {
+  src: "/images/app/shortcuts.png",
+  alt: "Spendy's eight registered actions in Apple's Shortcuts app",
+};
 
-  // Native dialog handles focus trapping, Escape and returning focus to the card.
-  useEffect(() => {
-    if (selectedImage) dialogRef.current?.showModal();
-    else dialogRef.current?.close();
-  }, [selectedImage]);
+export function AppShowcase() {
+  const reduceMotion = useSiteReducedMotion();
+  const { theme } = useTheme();
+  const [shortcutView, setShortcutView] = useState<"result" | "actions">("result");
+  const gallery = screenshots.map((image) => ({
+    ...image,
+    src: themedScreenshot(image.src, theme),
+    alt: `${image.alt}, ${theme} mode`,
+  }));
 
   return (
     <section
@@ -51,22 +57,17 @@ export function AppShowcase() {
       </div>
       {reduceMotion ? (
         <div className="screenshot-static-gallery">
-          {screenshots.map((image) => (
-            <button
-              type="button"
-              key={image.src}
-              onClick={() => setSelectedImage(image)}
-            >
+          {gallery.map((image) => (
+            <figure key={image.src}>
               <img src={image.src} alt={image.alt} loading="lazy" />
-            </button>
+            </figure>
           ))}
         </div>
       ) : (
         <FanGallery
-          items={screenshots}
-          onSelect={setSelectedImage}
+          items={gallery}
           cardWidth={162}
-          aspectRatio={0.8}
+          aspectRatio={402 / 874}
           spacing={0.69}
           curve={0.14}
           tilt={14.5}
@@ -88,73 +89,67 @@ export function AppShowcase() {
         />
       )}
       <p className="showcase-caption">
-        A few screens from the app in development. Tap one for a closer look.
+        A few screens from Spendy in {theme} mode.
         <br />
-        Sample data, captured on iPhone Simulator.
+        Real captures. Sample entries.
       </p>
       <div className="screenshot-features">
         <article id="insights">
           <div className="screenshot-feature-copy">
-            <p className="eyebrow">SEE THE PATTERN</p>
-            <h3>Where did it go?</h3>
-            <p>A clearer picture of the spending you add.</p>
+            <p className="eyebrow">SPENDING INSIGHTS</p>
+            <h3>A little perspective.</h3>
+            <p>Patterns and upcoming renewals, from your own entries.</p>
           </div>
-          <button
-            type="button"
-            onClick={() => setSelectedImage(screenshots[1])}
-            aria-label="Enlarge the Analytics screenshot"
-          >
+          <figure className="screenshot-frame">
             <img
-              src={screenshots[1].src}
-              alt={screenshots[1].alt}
+              src={themedScreenshot(insightScreenshot.src, theme)}
+              alt={insightScreenshot.alt}
               loading="lazy"
               width="402"
               height="874"
             />
-          </button>
+          </figure>
         </article>
-        <article id="receipt">
-          <div className="screenshot-feature-copy">
-            <p className="eyebrow">KEEP IT SIMPLE</p>
-            <h3>Start with one entry.</h3>
-            <p>A coffee, a grocery run. The everyday stuff.</p>
+      <article className="shortcuts-peek" id="siri">
+        <div className="shortcuts-copy">
+          <p className="eyebrow">SIRI & SHORTCUTS</p>
+          <h3>
+            A few words.
+            <br />A little less tapping.
+          </h3>
+          <p>Add an expense, scan a receipt, or check your spending.</p>
+        </div>
+        <div className="shortcut-view-switch" role="group" aria-label="Shortcut preview">
+          <button type="button" aria-pressed={shortcutView === "result"} onClick={() => setShortcutView("result")}>On iPhone</button>
+          <button type="button" aria-pressed={shortcutView === "actions"} onClick={() => setShortcutView("actions")}>Available actions</button>
+        </div>
+        <div className="shortcuts-screen">
+          <div className="shortcuts-system-images">
+            {shortcutView === "result" ? <figure className="siri-system-frame iphone-shortcut-capture">
+              <div className="iphone-shortcut-crop">
+              <img
+                src="/images/app/shortcut-logged-iphone.png"
+                alt="Spendy shortcut on iPhone confirming a Groceries expense was logged"
+                loading="lazy"
+                width="1206"
+                height="2622"
+              />
+              </div>
+              <figcaption>Expense logged on iPhone</figcaption>
+            </figure>
+            : <figure className="screenshot-frame">
+              <img
+                src={themedScreenshot(shortcutsScreenshot.src, theme)}
+                alt={shortcutsScreenshot.alt}
+                loading="lazy"
+                width="402"
+                height="874"
+              />
+            </figure>}
           </div>
-          <button
-            type="button"
-            onClick={() => setSelectedImage(screenshots[3])}
-            aria-label="Enlarge the add-entry screenshot"
-          >
-            <img
-              src={screenshots[3].src}
-              alt={screenshots[3].alt}
-              loading="lazy"
-              width="402"
-              height="874"
-            />
-          </button>
-        </article>
+        </div>
+      </article>
       </div>
-      <dialog
-        ref={dialogRef}
-        className="screenshot-dialog"
-        onClose={() => setSelectedImage(null)}
-        onClick={(event) => {
-          if (event.target === event.currentTarget) setSelectedImage(null);
-        }}
-        aria-label="App screenshot preview"
-      >
-        <button
-          className="screenshot-close"
-          type="button"
-          onClick={() => setSelectedImage(null)}
-          autoFocus
-        >
-          Close ×
-        </button>
-        {selectedImage && (
-          <img src={selectedImage.src} alt={selectedImage.alt} />
-        )}
-      </dialog>
     </section>
   );
 }
