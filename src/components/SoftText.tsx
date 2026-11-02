@@ -1,16 +1,18 @@
-import { motion } from "motion/react";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 import { useSiteReducedMotion } from "../AnimationPreferences";
 
-// A short, once-only word reveal inspired by React Bits' Blur Text.
 export function SoftText({ text, className = "" }: { text: string; className?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
   const reduce = useSiteReducedMotion();
-  return <span className={`soft-text ${className}`} aria-label={text}>
-    {text.split(" ").map((word, index) => <motion.span key={`${word}-${index}`} aria-hidden="true"
-      initial={reduce ? false : { opacity: 0, y: 10, filter: "blur(5px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      viewport={{ once: true, amount: .5 }}
-      transition={{ duration: reduce ? 0 : .45, delay: reduce ? 0 : index * .065 }}>
-      {word}{"\u00a0"}
-    </motion.span>)}
+  useEffect(() => {
+    if (!ref.current || reduce) return;
+    const words = ref.current.querySelectorAll("span");
+    const animation = gsap.fromTo(words, { opacity: 0, y: 10 },
+      { opacity: 1, y: 0, stagger: .065, duration: .55, ease: "power3.out", clearProps: "opacity,transform" });
+    return () => { animation.revert(); };
+  }, [text, reduce]);
+  return <span ref={ref} className={`soft-text ${className}`} aria-label={text}>
+    {text.split(" ").map((word, index) => <span key={`${word}-${index}`} aria-hidden="true">{word}{"\u00a0"}</span>)}
   </span>;
 }

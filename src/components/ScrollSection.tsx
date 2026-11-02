@@ -1,15 +1,24 @@
-import type { ComponentProps } from "react";
-import { motion } from "motion/react";
+import { useEffect, useRef, type ComponentProps } from "react";
+import { gsap } from "gsap";
 import { useSiteReducedMotion } from "../AnimationPreferences";
 
-// Each section settles into view once. No scroll-linked work or page transitions.
-export function ScrollSection({ children, ...props }: Omit<ComponentProps<"section">, "onDrag" | "onDragStart" | "onDragEnd" | "onAnimationStart" | "onAnimationEnd">) {
+// Reveal each section once. Content is visible before JavaScript; GSAP owns
+// only this wrapper's opacity and transform, so it never fights child Motion UI.
+export function ScrollSection({ children, ...props }: ComponentProps<"section">) {
+  const ref = useRef<HTMLElement>(null);
   const reduce = useSiteReducedMotion();
-  return <motion.section {...props}
-    initial={reduce ? false : { opacity: 0, y: 14 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, amount: .08 }}
-    transition={{ duration: reduce ? 0 : .45, ease: [.22, 1, .36, 1] }}>
-    {children}
-  </motion.section>;
+  useEffect(() => {
+    const section = ref.current;
+    if (!section || reduce) return;
+    let animation: gsap.core.Tween | undefined;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      animation = gsap.fromTo(section, { opacity: .4, y: 18 },
+        { opacity: 1, y: 0, duration: .65, ease: "power3.out", clearProps: "opacity,transform" });
+      observer.disconnect();
+    }, { threshold: .08 });
+    observer.observe(section);
+    return () => { observer.disconnect(); animation?.revert(); };
+  }, [reduce]);
+  return <section ref={ref} {...props}>{children}</section>;
 }
