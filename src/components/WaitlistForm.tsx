@@ -24,7 +24,7 @@ export function WaitlistForm() {
     return (
       <div className="signup-success">
         <div role="status">
-        <p>You're on the list.</p>
+        <p>You’re on the list.</p>
         <p>
           We’ll email you when there’s news.
         </p>

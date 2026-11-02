@@ -30,23 +30,14 @@ export function Hero() {
       </Suspense>
       <section className="hero section">
         <Reveal className="hero-copy">
-          <div className="hero-identity">
-            <div>
-              <p className="eyebrow">Spendy for iOS</p>
-              <p className="beta-banner">
-                <span className="beta-banner-dot" aria-hidden="true" />
-                In development
-              </p>
-            </div>
-          </div>
-          <h1>
-            <SoftText text="your money." />
+          <p className="hero-identity-note">Spendy for iOS. In development.</p>
+          <h1 className="hero-gradient-title">
+            <SoftText text="Your money," />
             <br />
-            <SoftText text="a little clearer." className="muted" />
+            <SoftText text="a little clearer." />
           </h1>
           <p className="hero-description">
-            Track spending, budgets, and subscriptions in one private iPhone app.
-            No bank login.
+            Spending, budgets, and subscriptions, privately on your iPhone.
           </p>
           <div className="hero-actions">
             <motion.a whileHover={reduce ? undefined : { y: -2 }} whileTap={reduce ? undefined : { scale: .97 }} className="button" href="#guides">

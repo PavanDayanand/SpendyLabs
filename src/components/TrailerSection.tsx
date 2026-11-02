@@ -7,9 +7,8 @@ export function TrailerSection() {
   return (
     <ScrollSection className="section trailer-section" id="trailer">
       <div className="trailer-heading">
-        <p className="eyebrow">The Spendy trailer</p>
         <div>
-          <h2>Money makes sense.</h2>
+          <h2>See Spendy in action.</h2>
           <p>
             A quick look at the friendly iOS app bringing expenses, budgets,
             subscriptions, and insights together.
@@ -18,7 +17,10 @@ export function TrailerSection() {
       </div>
 
       <div className="trailer-player">
-        {paused ? <div className="trailer-paused"><p>Trailer paused</p><a href={`https://youtu.be/${trailerVideoId}`} target="_blank" rel="noreferrer">Watch on YouTube ↗</a></div> : <iframe
+        {paused ? <a className="trailer-poster" href={`https://youtu.be/${trailerVideoId}`} target="_blank" rel="noreferrer">
+          <img src={`https://i.ytimg.com/vi/${trailerVideoId}/maxresdefault.jpg`} alt="Spendy trailer preview" width="1280" height="720" loading="lazy" />
+          <span>Watch on YouTube</span>
+        </a> : <iframe
           src={`https://www.youtube-nocookie.com/embed/${trailerVideoId}?rel=0&modestbranding=1`}
           title="Spendy app trailer"
           loading="lazy"
@@ -28,14 +30,14 @@ export function TrailerSection() {
         />}
       </div>
 
-      <a
+      {!paused && <a
         className="text-link trailer-link"
         href={`https://youtu.be/${trailerVideoId}`}
         target="_blank"
         rel="noreferrer"
       >
         Watch on YouTube <span aria-hidden="true">↗</span>
-      </a>
+      </a>}
     </ScrollSection>
   );
 }

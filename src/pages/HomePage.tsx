@@ -16,7 +16,6 @@ export function HomePage() {
       <TrailerSection />
       <OriginStory />
       <ScrollSection className="privacy-strip section">
-        <p className="eyebrow">Personal finance. Emphasis on personal.</p>
         <div>
           <h3>Your money is your business.</h3>
           <p>
@@ -30,14 +29,7 @@ export function HomePage() {
       </ScrollSection>
       <ScrollSection className="waitlist section" id="waitlist">
         <div className="waitlist-copy">
-          <p className="eyebrow">
-            <span className="status-dot" /> Get in early
-          </p>
-          <h2>
-            A little curious?
-            <br />
-            <span>Stay in the loop.</span>
-          </h2>
+          <h2>Join the Spendy waitlist.</h2>
           <p>
             Leave your email and we’ll let you know when beta invitations and
             launch news are ready.
@@ -51,7 +43,7 @@ export function HomePage() {
             />
             <div>
               <strong>Spendy for iOS</strong>
-              <span>In development · Beta coming later</span>
+              <span>In development. Beta coming later.</span>
             </div>
           </div>
         </div>

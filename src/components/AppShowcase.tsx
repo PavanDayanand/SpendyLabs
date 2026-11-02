@@ -50,12 +50,7 @@ export function AppShowcase() {
       aria-labelledby="app-showcase-title"
     >
       <div className="showcase-heading">
-        <p className="eyebrow">A little look inside</p>
-        <h2 id="app-showcase-title">
-          Meet Spendy.
-          <br />
-          <span className="muted">From the inside.</span>
-        </h2>
+        <h2 id="app-showcase-title">Inside Spendy.</h2>
         <p>Your entries. Your patterns. A little more clarity.</p>
       </div>
       {reduceMotion ? (
@@ -99,8 +94,7 @@ export function AppShowcase() {
       <div className="screenshot-features">
         <article id="insights">
           <div className="screenshot-feature-copy">
-            <p className="eyebrow">Spending insights</p>
-            <h3>A little perspective.</h3>
+            <h3>Spending insights.</h3>
             <p>Patterns and upcoming renewals, from your own entries.</p>
           </div>
           <figure className="screenshot-frame">
@@ -115,11 +109,7 @@ export function AppShowcase() {
         </article>
       <article className="shortcuts-peek" id="siri">
         <div className="shortcuts-copy">
-          <p className="eyebrow">Siri & Shortcuts</p>
-          <h3>
-            A few words.
-            <br />A little less tapping.
-          </h3>
+          <h3>Siri and Shortcuts.</h3>
           <p>Add an expense, scan a receipt, or check your spending.</p>
         </div>
         <div className="shortcut-view-switch">

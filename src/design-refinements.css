@@ -1,0 +1,118 @@
+/* Hallmark · brand: Spendy · theme: existing monochrome · redesign: polish · job: join · built: the project */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V3 · weakest: H, first-screen hierarchy; tighten the brand stage and make app details legible. */
+html, body { overflow-x: clip; }
+:root { font-family: var(--font-body); font-synthesis: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+h1, h2, h3, h4 { min-width: 0; overflow-wrap: break-word; text-wrap: balance; }
+p { text-wrap: pretty; }
+button, input, select, textarea { font-family: var(--font-body); }
+input, select, textarea { font-size: var(--type-body); }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; transition: none; }
+.text-link { text-decoration-thickness: from-font; text-underline-position: from-font; }
+.eyebrow, .mobile-nav-heading { font-size: var(--type-label); line-height: 1.5; font-weight: 500; letter-spacing: 0; text-transform: none; }
+.compact-home .section { padding-block: var(--space-section); }
+.refracted-wordmark { background: var(--brand-stage); color: var(--brand-stage-ink); padding-block: 1.5rem; }
+.refracted-wordmark__canvas { max-width: 760px; }
+.compact-home .hero { padding-block: 2.75rem 3.5rem; gap: var(--space-columns); align-items: center; }
+.compact-home .hero h1 { font-size: var(--type-display); line-height: 1.08; letter-spacing: -.045em; font-weight: 650; margin-top: 1.5rem; }
+.hero .muted { color: var(--ink); }
+.hero-description { max-width: 40ch; margin-top: 1.5rem; font-size: var(--type-body-large); line-height: 1.6; }
+.hero-identity-note { margin: 0; font-size: var(--type-support); line-height: 1.5; color: var(--muted); }
+.hero-actions { margin-top: 1.5rem; }
+.hero-notes { margin-top: 1.5rem; gap: 1rem; flex-wrap: wrap; font-size: var(--type-caption); line-height: 1.5; }
+.hero-notes span + span::before { content: none; }
+.hero-mascot { max-width: 340px; }
+.hero-mascot-hint { font-size: var(--type-caption); line-height: 1.5; }
+.showcase-heading { max-width: 640px; text-align: left; margin: 0 0 1.5rem; }
+.showcase-heading h2, .origin-story h2, .trailer-heading h2, .waitlist h2 { font-size: var(--type-heading); line-height: 1.15; letter-spacing: -.025em; font-weight: 600; }
+.showcase-heading h2 { margin: 0 0 1rem; }
+.showcase-heading > p:last-child { max-width: 45ch; font-size: var(--type-body); }
+.showcase-caption { font-size: var(--type-caption); line-height: 1.6; margin-bottom: 2.5rem; }
+.spendy-screenshot-fan { margin-block: 1rem; }
+.screenshot-features { gap: var(--space-columns); border-top: 1px solid var(--line); padding-top: 2.5rem; }
+.screenshot-features article { background: transparent; border-radius: 0; padding: 0; box-shadow: none; }
+.screenshot-features article:hover { box-shadow: none; }
+.screenshot-features h3 { font-size: var(--type-subheading); font-weight: 600; line-height: 1.2; letter-spacing: -.025em; }
+.screenshot-feature-copy, .shortcuts-copy { text-align: left; max-width: none; min-height: 6rem; }
+.screenshot-feature-copy > p:last-child, .shortcuts-copy > p:last-child { font-size: var(--type-body); line-height: 1.6; max-width: 45ch; }
+.screenshot-features .screenshot-frame, .screenshot-features .siri-system-frame { width: min(100%, 250px); }
+.shortcuts-screen .screenshot-frame { height: 400px; }
+.shortcut-view-switch { margin-bottom: 1.5rem; }
+.motion-switch button { font-size: var(--type-support); }
+.siri-system-frame figcaption { font-size: var(--type-caption); line-height: 1.5; }
+.trailer-heading { grid-template-columns: 1fr; gap: 1rem; }
+.trailer-heading p { font-size: var(--type-body); line-height: 1.6; max-width: 60ch; }
+.origin-story-heading { grid-template-columns: 1fr; }
+.origin-story-copy { gap: var(--space-columns); }
+.origin-story-copy p { font-size: var(--type-body-large); line-height: 1.65; max-width: var(--measure); }
+.compact-home .privacy-strip { background: var(--surface); grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-columns); padding-block: 2rem; }
+.privacy-strip h3 { font-size: var(--type-subheading); line-height: 1.25; letter-spacing: -.02em; }
+.privacy-strip p:not(.eyebrow) { font-size: var(--type-body); line-height: 1.6; max-width: 60ch; }
+.waitlist { column-gap: var(--space-columns); }
+.waitlist-copy > p { font-size: var(--type-body); line-height: 1.65; max-width: 46ch; }
+.waitlist-platform span, .form-footnote, .consent { font-size: var(--type-caption); line-height: 1.6; }
+.email-row input { font-size: var(--type-body); }
+.document-page > p, .document-page section > p, .build-note > p { max-width: var(--measure); font-size: var(--type-body); line-height: 1.65; }
+.document-page h1 { line-height: 1.15; letter-spacing: -.025em; }
+.footer-top, .footer-bottom, .social-links { letter-spacing: 0; font-size: var(--type-caption); line-height: 1.6; }
+.footer-top p { line-height: 1.5; }
+.ticket-email > span:last-child { white-space: normal; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.ticket-stickers:hover .ticket-sticker, .ticket-reveal:focus-within .ticket-sticker { animation-play-state: paused; }
+@media (max-width: 700px) {
+  .compact-home .hero { padding-top: 1.5rem; padding-bottom: 2.5rem; gap: 1.5rem; }
+  .compact-home .hero h1 { font-size: clamp(2.625rem, 10vw, 3.5rem); line-height: 1.12; letter-spacing: -.035em; }
+  .hero-description { font-size: var(--type-body); }
+  .hero-mascot { max-width: 260px; }
+  .hero-notes { gap: .5rem 1rem; }
+  .showcase-heading { margin-bottom: 1rem; }
+  .screenshot-features { grid-template-columns: minmax(0, 1fr); gap: var(--space-columns); }
+  .screenshot-features article { padding: 0; }
+  .screenshot-feature-copy, .shortcuts-copy { min-height: 0; margin-bottom: 1.5rem; }
+  .compact-home .privacy-strip { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+  .privacy-strip .text-link { grid-column: 1; }
+  .origin-story-copy p { font-size: var(--type-body); }
+  .waitlist-platform { margin-top: 1.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ticket-sticker { animation: none; }
+}
+
+.honeypot { position: absolute; left: 0; top: 0; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; pointer-events: none; }
+.consent a { white-space: nowrap; }
+.compact-faq > .motion-question > button { min-height: 52px; padding-block: .75rem; line-height: 1.2; }
+.button:active, .appearance-toggle:active { opacity: .85; }
+.button:disabled { background: var(--surface); color: var(--muted); border-color: var(--line); cursor: wait; }
+.trailer-poster { position: absolute; inset: 0; display: block; }
+.trailer-poster img { width: 100%; height: 100%; object-fit: cover; }
+.trailer-poster span { position: absolute; left: 1.5rem; bottom: 1.5rem; padding: .75rem 1rem; border-radius: .5rem; background: var(--ink); color: var(--paper); font-size: var(--type-support); }
+.trailer-poster:focus-visible { outline-offset: -6px; }
+@media (max-width: 700px) {
+  .hero-notes { display: grid; gap: .5rem; }
+}
+
+.soft-text > span { max-width: 100%; overflow-wrap: anywhere; }
+
+/* User-requested neutral gradient, limited to the large hero headline. */
+.hero-gradient-title { color: var(--ink); }
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .hero-gradient-title {
+    background-image: linear-gradient(120deg, var(--headline-gradient-start) 10%, var(--headline-gradient-middle) 58%, var(--headline-gradient-end) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+}
+@media (forced-colors: active) {
+  .hero-gradient-title { background: none; color: CanvasText; -webkit-text-fill-color: CanvasText; }
+}
+
+.founder-story { max-width: 100%; margin-top: 2rem; }
+.founder-story > p, .founder-story-ending > p { max-width: 45ch; font-size: var(--type-body-large); line-height: 1.7; color: var(--muted); }
+.founder-story-ending { min-width: 0; }
+.pavan-signature { display: block; width: 180px; height: 90px; margin: 1.5rem 0 1rem; color: var(--ink); transform: rotate(-5deg); overflow: visible; }
+.founder-story-ending .text-link { display: inline-block; font-size: var(--type-support); }
+@media (max-width: 700px) {
+  .founder-story { gap: 1.5rem; }
+  .founder-story > p, .founder-story-ending > p { font-size: var(--type-body); }
+}

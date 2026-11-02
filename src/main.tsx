@@ -11,6 +11,8 @@ import "./interactive.css";
 import "./theme.css";
 import "./components/product-motion.css";
 import "./components/header-nav.css";
+import "./tokens.css";
+import "./design-refinements.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

@@ -7,3 +7,6 @@ dist/
 .DS_Store
 .env.*
 !.env.example
+
+# Local design audit screenshots and machine records
+.hallmark/
