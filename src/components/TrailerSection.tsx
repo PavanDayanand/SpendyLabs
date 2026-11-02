@@ -1,12 +1,13 @@
+import { ScrollSection } from "./ScrollSection";
 import { useSiteReducedMotion } from "../AnimationPreferences";
 const trailerVideoId = "0umZcuX-WW4";
 
 export function TrailerSection() {
   const paused = useSiteReducedMotion();
   return (
-    <section className="section trailer-section" id="trailer">
+    <ScrollSection className="section trailer-section" id="trailer">
       <div className="trailer-heading">
-        <p className="eyebrow">THE SPENDY TRAILER</p>
+        <p className="eyebrow">The Spendy trailer</p>
         <div>
           <h2>Money makes sense.</h2>
           <p>
@@ -35,6 +36,6 @@ export function TrailerSection() {
       >
         Watch on YouTube <span aria-hidden="true">↗</span>
       </a>
-    </section>
+    </ScrollSection>
   );
 }

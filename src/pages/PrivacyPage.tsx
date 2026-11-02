@@ -3,7 +3,7 @@ import policy from "../data/privacy-policy.json";
 export function PrivacyPage() {
   return (
     <article className="document-page privacy-page">
-      <p className="eyebrow">YOUR INFORMATION. IN PLAIN WORDS.</p>
+      <p className="eyebrow">Your information. In plain words.</p>
       <h1>Privacy Policy</h1>
       <p className="document-intro">{policy.intro}</p>
       <p className="document-date">Last updated {policy.updated}</p>

@@ -1,3 +1,4 @@
+import { ScrollSection } from "./ScrollSection";
 import { AnimatePresence, motion } from "motion/react";
 import { MotionSwitch } from "./MotionSwitch";
 import { useState } from "react";
@@ -43,13 +44,13 @@ export function AppShowcase() {
   }));
 
   return (
-    <section
+    <ScrollSection
       className="app-showcase section"
       id="guides"
       aria-labelledby="app-showcase-title"
     >
       <div className="showcase-heading">
-        <p className="eyebrow">A LITTLE LOOK INSIDE</p>
+        <p className="eyebrow">A little look inside</p>
         <h2 id="app-showcase-title">
           Meet Spendy.
           <br />
@@ -98,7 +99,7 @@ export function AppShowcase() {
       <div className="screenshot-features">
         <article id="insights">
           <div className="screenshot-feature-copy">
-            <p className="eyebrow">SPENDING INSIGHTS</p>
+            <p className="eyebrow">Spending insights</p>
             <h3>A little perspective.</h3>
             <p>Patterns and upcoming renewals, from your own entries.</p>
           </div>
@@ -114,7 +115,7 @@ export function AppShowcase() {
         </article>
       <article className="shortcuts-peek" id="siri">
         <div className="shortcuts-copy">
-          <p className="eyebrow">SIRI & SHORTCUTS</p>
+          <p className="eyebrow">Siri & Shortcuts</p>
           <h3>
             A few words.
             <br />A little less tapping.
@@ -157,6 +158,6 @@ export function AppShowcase() {
         </div>
       </article>
       </div>
-    </section>
+    </ScrollSection>
   );
 }

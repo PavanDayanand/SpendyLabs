@@ -1,18 +1,29 @@
-import { useEffect, useState } from "react";
-import { Sun, Moon, ArrowUpRight, Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { useSiteReducedMotion } from "../AnimationPreferences";
+import { ArrowUpRight, Plus } from "lucide-react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { MotionSwitch } from "./MotionSwitch";
-import { useTheme } from "../Theme";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Header() {
-  const { theme, toggleTheme } = useTheme();
+  const reduce = useSiteReducedMotion();
+  const headerRef = useRef<HTMLElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const { pathname } = useLocation();
 
   useEffect(() => { setMenuOpen(false); }, [pathname]);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+    function closeOutside(event: PointerEvent) {
+      if (!headerRef.current?.contains(event.target as Node)) setMenuOpen(false);
+    }
+    document.addEventListener("pointerdown", closeOutside);
+    return () => document.removeEventListener("pointerdown", closeOutside);
+  }, [menuOpen]);
+
   return (
-    <header className="header product-header" onKeyDown={(event) => {
+    <header ref={headerRef} className="header product-header" onKeyDown={(event) => {
       if (event.key === "Escape") {
         setMenuOpen(false);
         document.getElementById("mobile-menu-button")?.focus();
@@ -24,32 +35,39 @@ export function Header() {
           <span>Spendy</span>
         </Link>
         <div className="header-actions">
-          <div className="desktop-theme-control">
-            <MotionSwitch value={theme} label="Website appearance"
-              options={[{ value: "light", label: "Light", icon: <Sun size={18} strokeWidth={1.8} aria-hidden="true" /> }, { value: "dark", label: "Dark", icon: <Moon size={18} strokeWidth={1.8} aria-hidden="true" /> }]}
-              onChange={(value) => { if (value !== theme) toggleTheme(); }} />
-          </div>
-          <button className="mobile-header-control mobile-theme-control" type="button" onClick={toggleTheme}
-            aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}>
-            {theme === "light" ? <Moon size={20} aria-hidden="true" /> : <Sun size={20} aria-hidden="true" />}
-          </button>
+          <div className="desktop-theme-control"><ThemeToggle /></div>
           <a href="/#waitlist" className="header-waitlist">Join waitlist <ArrowUpRight size={18} aria-hidden="true" /></a>
-          <button id="mobile-menu-button" className="mobile-header-control mobile-menu-control" type="button"
+          <motion.button whileTap={reduce ? undefined : { scale: .95 }} id="mobile-menu-button" className="mobile-header-control mobile-menu-control" type="button"
             aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen}
             aria-controls="main-navigation" onClick={() => setMenuOpen(!menuOpen)}>
-            {menuOpen ? <X size={21} aria-hidden="true" /> : <Menu size={21} aria-hidden="true" />}
-          </button>
+            <span>{menuOpen ? "Close" : "Menu"}</span><Plus size={19} aria-hidden="true" />
+          </motion.button>
         </div>
       </div>
-      <nav id="main-navigation" className="product-nav" aria-label="Main navigation" data-open={menuOpen}
-        onClick={() => setMenuOpen(false)}>
+      <nav className="product-nav desktop-main-navigation" aria-label="Main navigation">
+        <a href="/#story">Our story</a><a href="/#guides">Inside the app</a>
+        <a href="/#insights">Insights</a><a href="/#siri">Shortcuts</a><NavLink to="/updates">Updates</NavLink>
+      </nav>
+      <AnimatePresence initial={false}>
+      {menuOpen && <motion.nav id="main-navigation" className="product-nav mobile-main-navigation" aria-label="Main navigation" data-open="true"
+        initial={reduce ? false : { opacity: 0, y: -10, scale: .97 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: reduce ? 0 : -8, scale: reduce ? 1 : .98 }}
+        transition={{ duration: reduce ? 0 : .22, ease: [.22, 1, .36, 1] }}
+        onClick={(event) => { if ((event.target as HTMLElement).closest("a")) setMenuOpen(false); }}>
+        <p className="mobile-nav-heading">A little look around</p>
         <a href="/#story">Our story</a>
         <a href="/#guides">Inside the app</a>
         <a href="/#insights">Insights</a>
         <a href="/#siri">Shortcuts</a>
         <NavLink to="/updates">Updates</NavLink>
+        <div className="mobile-nav-appearance">
+          <span>Make yourself at home.</span>
+          <ThemeToggle showLabel />
+        </div>
         <a className="mobile-nav-waitlist" href="/#waitlist">Join waitlist <ArrowUpRight size={16} aria-hidden="true" /></a>
-      </nav>
+      </motion.nav>}
+      </AnimatePresence>
     </header>
   );
 }

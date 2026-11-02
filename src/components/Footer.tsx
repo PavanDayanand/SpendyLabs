@@ -1,21 +1,24 @@
+import { motion } from "motion/react";
+import { useSiteReducedMotion } from "../AnimationPreferences";
 import { useAnimationPreferences } from "../AnimationPreferences";
 import { Link } from "react-router-dom";
 import { appTermsURL, socialLinks } from "../data/links";
 export function Footer() {
+  const reduce = useSiteReducedMotion();
   const { paused, toggle } = useAnimationPreferences();
   return (
     <footer className="footer">
       <div className="footer-top">
         <p>
-          MADE FOR iOS.
+          Made for iOS.
           <br />
-          BUILT FOR YOUR EVERYDAY.
+          Built for your everyday.
         </p>
-        <a href="/#waitlist">GET IN EARLY</a>
+        <a href="/#waitlist">Get in early</a>
       </div>
-      <button type="button" className="footer-animation-toggle" aria-pressed={paused} onClick={toggle}>
+      <motion.button whileHover={reduce ? undefined : { y: -1 }} whileTap={reduce ? undefined : { scale: .97 }} type="button" className="footer-animation-toggle" aria-pressed={paused} onClick={toggle}>
         {paused ? "Resume all animations" : "Pause all animations"}
-      </button>
+      </motion.button>
       <nav className="social-links" aria-label="Follow and support Spendy">
         {socialLinks.map((link) => (
           <a
@@ -29,15 +32,15 @@ export function Footer() {
         ))}
       </nav>
       <Link to="/" className="footer-wordmark" aria-label="Spendy home">
-        SPENDY<span>©</span>
+        Spendy<span>©</span>
       </Link>
       <div className="footer-bottom">
-        <span>© {new Date().getFullYear()} SPENDY</span>
-        <span>INDEPENDENT. IN DEVELOPMENT.</span>
+        <span>© {new Date().getFullYear()} Spendy</span>
+        <span>Independent. In development.</span>
         <div>
-          <Link to="/privacy">PRIVACY</Link>
-          <a href={appTermsURL} target="_blank" rel="noopener noreferrer" aria-label="Terms of Use for the app (Apple EULA)">TERMS OF USE</a>
-          <Link to="/updates">BUILD NOTES</Link>
+          <Link to="/privacy">Privacy</Link>
+          <a href={appTermsURL} target="_blank" rel="noopener noreferrer" aria-label="Terms of Use for the app (Apple EULA)">Terms of use</a>
+          <Link to="/updates">Build notes</Link>
         </div>
       </div>
     </footer>

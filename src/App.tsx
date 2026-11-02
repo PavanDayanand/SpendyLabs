@@ -1,6 +1,7 @@
 import { useMediaProtection } from "./useMediaProtection";
 import { lazy, Suspense, useEffect } from "react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
+import { ReadingProgress } from "./components/ReadingProgress";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { HomePage } from "./pages/HomePage";
@@ -29,6 +30,7 @@ export default function App() {
       <a href="#main" className="skip-link">
         Skip to content
       </a>
+      <ReadingProgress />
       <Header />
       <main id="main">
         <Routes>
@@ -40,7 +42,7 @@ export default function App() {
             path="*"
             element={
               <article className="document-page">
-                <p className="eyebrow">404 / A LITTLE OFF TRACK</p>
+                <p className="eyebrow">404 / A little off track</p>
                 <h1>Let's head home.</h1>
                 <Link to="/" className="button">
                   Back to Spendy

@@ -1,3 +1,5 @@
+import { Question } from "../components/Question";
+import { ScrollSection } from "../components/ScrollSection";
 import { AppShowcase } from "../components/AppShowcase";
 import { Link } from "react-router-dom";
 import { Hero } from "../components/Hero";
@@ -13,8 +15,8 @@ export function HomePage() {
       <AppShowcase />
       <TrailerSection />
       <OriginStory />
-      <section className="privacy-strip section">
-        <p className="eyebrow">PERSONAL FINANCE. EMPHASIS ON PERSONAL.</p>
+      <ScrollSection className="privacy-strip section">
+        <p className="eyebrow">Personal finance. Emphasis on personal.</p>
         <div>
           <h3>Your money is your business.</h3>
           <p>
@@ -25,11 +27,11 @@ export function HomePage() {
         <Link to="/privacy" className="text-link">
           Privacy Policy <span aria-hidden="true">↗</span>
         </Link>
-      </section>
-      <section className="waitlist section" id="waitlist">
+      </ScrollSection>
+      <ScrollSection className="waitlist section" id="waitlist">
         <div className="waitlist-copy">
           <p className="eyebrow">
-            <span className="status-dot" /> GET IN EARLY
+            <span className="status-dot" /> Get in early
           </p>
           <h2>
             A little curious?
@@ -54,33 +56,17 @@ export function HomePage() {
           </div>
         </div>
         <WaitlistForm />
-      </section>
-      <section className="section compact-faq">
-        <details className="faq-collection">
-          <summary>
-            <h3>A few good questions.</h3>
-            <span className="disclosure" aria-hidden="true">
-              +
-            </span>
-          </summary>
+      </ScrollSection>
+      <ScrollSection className="section compact-faq">
+        <Question title="A few good questions.">
           <div className="faq">
-            {faqs.map((faq) => (
-              <details key={faq.question}>
-                <summary>
-                  {faq.question}
-                  <span className="disclosure" aria-hidden="true">
-                    +
-                  </span>
-                </summary>
-                <p>{faq.answer}</p>
-              </details>
-            ))}
+            {faqs.map((faq) => <Question key={faq.question} title={faq.question}><p>{faq.answer}</p></Question>)}
           </div>
-        </details>
+        </Question>
         <Link className="text-link" to="/updates">
           See what we’re building <span aria-hidden="true">↗</span>
         </Link>
-      </section>
+      </ScrollSection>
     </div>
   );
 }

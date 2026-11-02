@@ -1,4 +1,6 @@
-import { ArrowUpRight, ArrowDown } from "lucide-react";
+import { motion } from "motion/react";
+import { useSiteReducedMotion } from "../AnimationPreferences";
+import { ArrowDown } from "lucide-react";
 import { lazy, Suspense } from "react";
 import "./refracted-wordmark.css";
 import { SoftText } from "./SoftText";
@@ -12,6 +14,7 @@ const RefractedWordmark = lazy(() =>
 );
 
 export function Hero() {
+  const reduce = useSiteReducedMotion();
   return (
     <>
       <Suspense
@@ -29,12 +32,11 @@ export function Hero() {
         <Reveal className="hero-copy">
           <div className="hero-identity">
             <div>
-              <p className="eyebrow">SPENDY FOR iOS</p>
-              <a className="beta-banner" href="#waitlist">
+              <p className="eyebrow">Spendy for iOS</p>
+              <p className="beta-banner">
                 <span className="beta-banner-dot" aria-hidden="true" />
-                In development · Join the waitlist
-                <ArrowUpRight className="beta-banner-arrow" size={14} aria-hidden="true" />
-              </a>
+                In development
+              </p>
             </div>
           </div>
           <h1>
@@ -47,12 +49,9 @@ export function Hero() {
             No bank login.
           </p>
           <div className="hero-actions">
-            <a className="button" href="#guides">
+            <motion.a whileHover={reduce ? undefined : { y: -2 }} whileTap={reduce ? undefined : { scale: .97 }} className="button" href="#guides">
               Take a look <ArrowDown size={17} aria-hidden="true" />
-            </a>
-            <a className="text-link" href="#waitlist">
-              Join the waitlist
-            </a>
+            </motion.a>
           </div>
           <div className="hero-notes">
             <span>Everyday essentials stay free</span>

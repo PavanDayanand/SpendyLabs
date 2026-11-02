@@ -32,7 +32,7 @@ export function WaitlistTicket({ email }: { email: string }) {
       <button className="ticket-close" type="button" aria-label="Close ticket" onClick={() => setOpen(false)}><X size={22} strokeWidth={1.8} aria-hidden="true" /></button>
       <div className="ticket-reveal-center">
         <div className="ticket-reveal-intro">
-          <p className="eyebrow">WELCOME TO SPENDY</p>
+          <p className="eyebrow">Welcome to Spendy</p>
           <h3 id="ticket-reveal-title">A little something for being early.</h3>
         </div>
         <div className="waitlist-ticket-scene">
@@ -47,15 +47,15 @@ export function WaitlistTicket({ email }: { email: string }) {
             background="var(--field)" color="var(--ink)" onTear={() => setTorn(true)}
             ariaLabel="Tear off your Spendy waitlist ticket stub"
             stub={<div className="waitlist-ticket-stub">
-              <span>WAITLIST</span>
+              <span>Waitlist</span>
               <strong>You’re in.</strong>
               <span className="ticket-pull">Pull here <ArrowUpRight size={18} aria-hidden="true" /></span>
             </div>}>
             <div className="waitlist-ticket-body">
               <div className="ticket-brand"><img src="/images/spendy-ios-icon-dark.png" alt="" width="42" height="42" /><span>Spendy</span></div>
               <p className="ticket-message">Good things<br />start small.</p>
-              <div className="ticket-email"><span>RESERVED FOR</span><span title={email}>{email}</span></div>
-              <div className="ticket-footer"><span>YOUR EARLY HELLO.</span><span>SPENDY FOR iOS</span></div>
+              <div className="ticket-email"><span>Reserved for</span><span title={email}>{email}</span></div>
+              <div className="ticket-footer"><span>Your early hello.</span><span>Spendy for iOS</span></div>
             </div>
           </TearTicket>
         </div>

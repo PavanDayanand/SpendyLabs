@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+import { useSiteReducedMotion } from "../AnimationPreferences";
 import { WaitlistTicket } from "./WaitlistTicket";
 import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
@@ -5,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "../store/store";
 import { joinWaitlist, resetWaitlist } from "../store/waitlistSlice";
 
 export function WaitlistForm() {
+  const reduce = useSiteReducedMotion();
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
   const [website, setWebsite] = useState("");
@@ -27,7 +30,7 @@ export function WaitlistForm() {
         </p>
         </div>
         <WaitlistTicket email={email.trim()} />
-        <button
+        <motion.button whileHover={reduce ? undefined : { y: -1 }} whileTap={reduce ? undefined : { scale: .97 }}
           className="text-button"
           onClick={() => {
             dispatch(resetWaitlist());
@@ -36,7 +39,7 @@ export function WaitlistForm() {
           }}
         >
           Use another email
-        </button>
+        </motion.button>
       </div>
     );
 
@@ -57,13 +60,13 @@ export function WaitlistForm() {
           disabled={status === "loading"}
           aria-describedby={error ? "signup-error" : undefined}
         />
-        <button
+        <motion.button whileHover={reduce ? undefined : { y: -1 }} whileTap={reduce ? undefined : { scale: .97 }}
           className="button"
           type="submit"
           disabled={status === "loading"}
         >
           {status === "loading" ? "Joining…" : "Count me in"}
-        </button>
+        </motion.button>
       </div>
       <div className="honeypot" aria-hidden="true">
         <label htmlFor="website-field">Website</label>

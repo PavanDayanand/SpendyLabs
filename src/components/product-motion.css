@@ -17,26 +17,10 @@
 .motion-switch-label > span:first-child:not(:last-child) { display: inline-flex; align-items: center; justify-content: center; }
 .motion-switch-label svg { display: block; flex-shrink: 0; stroke: currentColor; }
 
-/* The phone header keeps the name and gives navigation a deliberate home. */
-.mobile-header-control, .product-header nav.product-nav .mobile-nav-waitlist { display: none; }
-.product-nav { text-transform: uppercase; }
-@media (max-width: 700px) {
-  .product-header { --header-pill-height: 44px; background: var(--paper); padding: 10px 20px; }
-  .product-header-bar { min-height: 44px; gap: 12px; }
-  .product-brand { padding: 0; background: transparent; border: 0; gap: 10px; font-size: 22px; flex-shrink: 0; height: 44px; }
-  .product-brand > span { display: inline; }
-  .product-brand img { width: 36px; height: 36px; border-radius: 10px; }
-  .header-actions { gap: 4px; }
-  .desktop-theme-control, .product-header .header-waitlist { display: none; }
-  .mobile-header-control { display: inline-grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 12px; color: var(--ink); background: transparent; }
-  .mobile-header-control:hover, .mobile-menu-control[aria-expanded="true"] { background: var(--surface); }
-  .product-header nav.product-nav { display: none; width: 100%; max-width: none; margin: 10px 0 0; padding: 8px 0 4px; gap: 4px 12px; border-top: 1px solid var(--line); overflow: visible; text-transform: none; }
-  .product-header nav.product-nav[data-open="true"] { display: grid; grid-template-columns: 1fr 1fr; }
-  .product-header nav.product-nav a, .product-header nav.product-nav .mobile-nav-waitlist { display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 12px; border-radius: 10px; font-size: 14px; font-weight: 450; white-space: nowrap; }
-  .product-nav a:hover, .product-nav a:focus-visible { background: var(--surface); text-decoration: none; }
-  .product-nav .mobile-nav-waitlist { font-weight: 600; }
-}
-.product-header nav.product-nav a::after { content: none; }
-@media (max-width: 700px) {
-  .product-header nav.product-nav[data-open="true"] { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); justify-content: stretch; }
-}
+.eyebrow, .footer-top, .footer-bottom, .footer-wordmark { text-transform: none; }
+.motion-question { border-bottom: 1px solid var(--line); }
+.motion-question > button { display: flex; justify-content: space-between; align-items: center; gap: 20px; width: 100%; min-height: 56px; padding: 18px 0; border: 0; background: transparent; color: var(--ink); text-align: left; font-size: 16px; }
+.motion-question > button > span:last-child { display: inline-flex; flex: none; }
+.motion-question-answer { padding-bottom: 18px; color: var(--muted); font-size: 14px; line-height: 1.65; }
+.compact-faq > .motion-question > button { font-size: 24px; letter-spacing: -.035em; }
+.motion-question .faq { border: 0; margin: 0; }

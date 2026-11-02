@@ -4,7 +4,7 @@ export function OriginStory() {
   return (
     <section className="origin-story section" id="story">
       <Reveal className="origin-story-heading">
-        <p className="eyebrow">FROM THE WEB TO YOUR POCKET</p>
+        <p className="eyebrow">From the web to your pocket</p>
         <h2>
           A small idea.
           <br />

@@ -15,7 +15,7 @@ export function MotionSwitch({ value, options, label, onChange }: {
     <LayoutGroup id={id}>
       <div className="motion-switch" role="group" aria-label={label}>
         {options.map((option) => (
-          <button key={option.value} type="button" aria-pressed={value === option.value}
+          <motion.button whileTap={reduce ? undefined : { scale: .96 }} key={option.value} type="button" aria-pressed={value === option.value}
             aria-label={option.label} onClick={() => onChange(option.value)}>
             {value === option.value && <motion.span className="motion-switch-highlight"
               layoutId="selection" transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 440, damping: 34 }} />}
@@ -23,7 +23,7 @@ export function MotionSwitch({ value, options, label, onChange }: {
               {option.icon && <span aria-hidden="true">{option.icon}</span>}
               <span className={option.icon ? "theme-option-text" : undefined}>{option.label}</span>
             </span>
-          </button>
+          </motion.button>
         ))}
       </div>
     </LayoutGroup>

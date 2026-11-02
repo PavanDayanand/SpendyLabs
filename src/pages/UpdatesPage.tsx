@@ -2,7 +2,7 @@ import { updates } from "../data/content";
 export function UpdatesPage() {
   return (
     <article className="document-page">
-      <p className="eyebrow">THE SPENDY BUILD NOTES</p>
+      <p className="eyebrow">The Spendy build notes</p>
       <h1>
         Getting a little
         <br />
@@ -19,7 +19,7 @@ export function UpdatesPage() {
       {updates.map((update) => (
         <article className="build-note" key={update.title}>
           <p className="eyebrow">
-            {update.date} · {update.tag}
+            {update.date} · {update.tag.charAt(0) + update.tag.slice(1).toLowerCase()}
           </p>
           <h2>{update.title}</h2>
           <p>{update.text}</p>
