@@ -84,3 +84,10 @@
   .ticket-sticker-note { bottom: -1%; }
   .ticket-sticker-plus { bottom: 0; }
 }
+
+/* Inline SVGs render identically on iOS and desktop, without emoji substitution. */
+.ticket-close { display: grid; place-items: center; }
+.ticket-sticker svg { display: block; width: 58%; height: 58%; stroke: currentColor; }
+.ticket-sticker-note svg { width: 80%; height: 80%; }
+.ticket-pull > svg { flex: none; color: var(--ink); }
+.ticket-done { display: inline-flex; align-items: center; gap: 8px; }

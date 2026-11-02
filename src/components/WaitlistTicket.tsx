@@ -1,3 +1,4 @@
+import { IndianRupee, Banknote, Sparkles, Plus, X, ArrowUpRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useSiteReducedMotion } from "../AnimationPreferences";
@@ -28,7 +29,7 @@ export function WaitlistTicket({ email }: { email: string }) {
     <dialog ref={dialogRef} className="ticket-reveal" data-reduced-motion={reduceMotion || undefined} aria-labelledby="ticket-reveal-title"
       aria-describedby="ticket-reveal-description" onCancel={() => setOpen(false)}>
       <div className="ticket-smoke" aria-hidden="true" />
-      <button className="ticket-close" type="button" aria-label="Close ticket" onClick={() => setOpen(false)}>×</button>
+      <button className="ticket-close" type="button" aria-label="Close ticket" onClick={() => setOpen(false)}><X size={22} strokeWidth={1.8} aria-hidden="true" /></button>
       <div className="ticket-reveal-center">
         <div className="ticket-reveal-intro">
           <p className="eyebrow">WELCOME TO SPENDY</p>
@@ -36,10 +37,10 @@ export function WaitlistTicket({ email }: { email: string }) {
         </div>
         <div className="waitlist-ticket-scene">
           <div className="ticket-stickers" aria-hidden="true">
-            <span className="ticket-sticker ticket-sticker-coin">₹</span>
-            <span className="ticket-sticker ticket-sticker-note"><span>$</span><i /><i /></span>
-            <span className="ticket-sticker ticket-sticker-spark">✳</span>
-            <span className="ticket-sticker ticket-sticker-plus">+</span>
+            <span className="ticket-sticker ticket-sticker-coin"><IndianRupee strokeWidth={1.8} /></span>
+            <span className="ticket-sticker ticket-sticker-note"><Banknote strokeWidth={1.6} /></span>
+            <span className="ticket-sticker ticket-sticker-spark"><Sparkles strokeWidth={1.8} /></span>
+            <span className="ticket-sticker ticket-sticker-plus"><Plus strokeWidth={1.8} /></span>
           </div>
         <div className="waitlist-ticket">
           <TearTicket width={560} height={300} stubSize={140} rotate={-3} tiltMax={4}
@@ -48,7 +49,7 @@ export function WaitlistTicket({ email }: { email: string }) {
             stub={<div className="waitlist-ticket-stub">
               <span>WAITLIST</span>
               <strong>You’re in.</strong>
-              <span className="ticket-pull">Pull here <span aria-hidden="true">↗</span></span>
+              <span className="ticket-pull">Pull here <ArrowUpRight size={18} aria-hidden="true" /></span>
             </div>}>
             <div className="waitlist-ticket-body">
               <div className="ticket-brand"><img src="/images/spendy-ios-icon-dark.png" alt="" width="42" height="42" /><span>Spendy</span></div>
@@ -61,7 +62,7 @@ export function WaitlistTicket({ email }: { email: string }) {
         </div>
         <div className="ticket-reveal-outro" aria-live="polite">
           <p id="ticket-reveal-description">{torn ? "You’re on the list. We’ll email you when there’s news." : "Your signup is confirmed. Pull the edge to make it yours."}</p>
-          {torn ? <button className="ticket-done" type="button" onClick={() => setOpen(false)}>Back to Spendy <span aria-hidden="true">↗</span></button>
+          {torn ? <button className="ticket-done" type="button" onClick={() => setOpen(false)}>Back to Spendy <ArrowUpRight size={18} aria-hidden="true" /></button>
             : <p className="ticket-keyboard-hint">Or press Enter / Space on the ticket edge.</p>}
         </div>
       </div>

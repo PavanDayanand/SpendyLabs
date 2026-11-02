@@ -1,3 +1,4 @@
+import { ArrowUpRight, ArrowDown } from "lucide-react";
 import { lazy, Suspense } from "react";
 import "./refracted-wordmark.css";
 import { SoftText } from "./SoftText";
@@ -32,7 +33,7 @@ export function Hero() {
               <a className="beta-banner" href="#waitlist">
                 <span className="beta-banner-dot" aria-hidden="true" />
                 In development · Join the waitlist
-                <span className="beta-banner-arrow" aria-hidden="true">↗</span>
+                <ArrowUpRight className="beta-banner-arrow" size={14} aria-hidden="true" />
               </a>
             </div>
           </div>
@@ -47,7 +48,7 @@ export function Hero() {
           </p>
           <div className="hero-actions">
             <a className="button" href="#guides">
-              Take a look <span aria-hidden="true">↓</span>
+              Take a look <ArrowDown size={17} aria-hidden="true" />
             </a>
             <a className="text-link" href="#waitlist">
               Join the waitlist

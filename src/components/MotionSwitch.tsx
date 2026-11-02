@@ -1,11 +1,11 @@
-import { useId } from "react";
+import { useId, type ReactNode } from "react";
 import { LayoutGroup, motion } from "motion/react";
 import { useSiteReducedMotion } from "../AnimationPreferences";
 
 // A shared sliding highlight. State stays in the parent that owns the choice.
 export function MotionSwitch({ value, options, label, onChange }: {
   value: string;
-  options: { value: string; label: string; icon?: string }[];
+  options: { value: string; label: string; icon?: ReactNode }[];
   label: string;
   onChange: (value: string) => void;
 }) {
