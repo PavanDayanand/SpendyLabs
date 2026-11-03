@@ -10,6 +10,7 @@
   max-width: 900px;
   margin-inline: auto;
   line-height: 0;
+  background: url("/images/spendy-wordmark.png") center / 100% 100% no-repeat;
 }
 .refracted-wordmark__canvas > .refracted-text {
   width: 100%;
@@ -17,4 +18,8 @@
 
 .refracted-wordmark__placeholder {
   aspect-ratio: 1120 / 129;
+
 }
+
+/* The live canvas replaces the identical preview after its first draw. */
+.refracted-wordmark__canvas:has(.refracted-text[data-ready="true"]) { background-image: none; }

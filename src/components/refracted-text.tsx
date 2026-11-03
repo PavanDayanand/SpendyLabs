@@ -280,6 +280,7 @@ export function RefractedText({
     cursorMovesBeam,
   });
   const [failed, setFailed] = useState(false);
+  const [ready, setReady] = useState(false);
   options.current = {
     siteReducedMotion,
     theme,
@@ -396,6 +397,7 @@ export function RefractedText({
     let previousAnimateBeam = animateBeam;
     let revealElapsed = 0;
     let disposed = false;
+    let firstDraw = true;
     let inView = true;
     // Canvas text does not update when a web font swaps in. The glyph mask
     // must be created only after the face is ready, then rebuilt on later loads.
@@ -541,6 +543,10 @@ export function RefractedText({
           spectrumMiddleColor,
           spectrumCoolColor,
         );
+      if (fontReady && firstDraw) {
+        firstDraw = false;
+        setReady(true);
+      }
       const totalLiftDuration = Number.isFinite(liftDuration)
         ? Math.max(0.2, Math.min(5, liftDuration))
         : 1.75;
@@ -741,6 +747,7 @@ export function RefractedText({
   return (
     <span
       {...props}
+      data-ready={ready}
       role="img"
       aria-label={typography.text}
       className={`refracted-text${className ? ` ${className}` : ''}`}

@@ -14,7 +14,7 @@ export function RefractedWordmark() {
           spectrumWarmColor="auto"
           spectrumMiddleColor="auto"
           spectrumCoolColor="auto"
-          reveal={true}
+          reveal={false}
           stagger={0.55}
           liftDuration={1.75}
           ease="power4.out"
