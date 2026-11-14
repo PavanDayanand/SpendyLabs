@@ -51,7 +51,7 @@ export function AppShowcase() {
     >
       <div className="showcase-heading">
         <h2 id="app-showcase-title">Inside Spendy.</h2>
-        <p>Your entries. Your patterns. A little more clarity.</p>
+        <p>Spending, budgets, and subscriptions. Together in one place.</p>
       </div>
       {reduceMotion ? (
         <div className="screenshot-static-gallery">

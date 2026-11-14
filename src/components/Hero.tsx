@@ -1,33 +1,17 @@
 import { motion } from "motion/react";
 import { useSiteReducedMotion } from "../AnimationPreferences";
 import { ArrowDown } from "lucide-react";
-import { lazy, Suspense } from "react";
+import { RefractedWordmark } from "./RefractedWordmark";
 import "./refracted-wordmark.css";
 import { SoftText } from "./SoftText";
 import { Reveal } from "./Reveal";
 import { SpendyMascot } from "./SpendyMascot";
 
-const RefractedWordmark = lazy(() =>
-  import("./RefractedWordmark").then((module) => ({
-    default: module.RefractedWordmark,
-  })),
-);
-
 export function Hero() {
   const reduce = useSiteReducedMotion();
   return (
     <>
-      <Suspense
-        fallback={
-          <div className="refracted-wordmark" aria-hidden="true">
-            <div className="refracted-wordmark__canvas">
-              <div className="refracted-wordmark__placeholder" />
-            </div>
-          </div>
-        }
-      >
-        <RefractedWordmark />
-      </Suspense>
+      <RefractedWordmark />
       <section className="hero section">
         <Reveal className="hero-copy">
           <p className="hero-identity-note">Spendy for iOS. In development.</p>
@@ -37,7 +21,7 @@ export function Hero() {
             <SoftText text="a little clearer." />
           </h1>
           <p className="hero-description">
-            Spending, budgets, and subscriptions, privately on your iPhone.
+            Know what you’ve spent, what’s left in your budget, and what renews next. Privately on your iPhone.
           </p>
           <div className="hero-actions">
             <motion.a whileHover={reduce ? undefined : { y: -2 }} whileTap={reduce ? undefined : { scale: .97 }} className="button" href="#guides">

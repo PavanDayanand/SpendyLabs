@@ -14,7 +14,8 @@
     "waitlist:export": "node --import tsx scripts/export-waitlist.ts",
     "music:spendy": "node --env-file=.env.local scripts/generate-spendy-soundtrack.mjs",
     "music:spendy-local": "node scripts/score-spendy.mjs",
-    "format": "prettier --write src server scripts index.html vite.config.ts tsconfig.json package.json"
+    "format": "prettier --write src server scripts index.html vite.config.ts tsconfig.json package.json",
+    "test:e2e": "e2e run"
   },
   "dependencies": {
     "@elevenlabs/elevenlabs-js": "^2.74.0",
@@ -32,12 +33,14 @@
     "react-router-dom": "^7.18.4"
   },
   "devDependencies": {
+    "@e2e-dev/web": "^0.15.4",
     "@types/express": "^5.0.6",
     "@types/node": "^26.6.5",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
     "concurrently": "^10.0.6",
+    "e2e": "^0.22.0",
     "prettier": "^3.9.9",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2",

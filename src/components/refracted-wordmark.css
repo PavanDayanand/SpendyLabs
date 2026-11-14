@@ -10,16 +10,25 @@
   max-width: 900px;
   margin-inline: auto;
   line-height: 0;
-  background: url("/images/spendy-wordmark.png") center / 100% 100% no-repeat;
+  aspect-ratio: 1120 / 129;
 }
 .refracted-wordmark__canvas > .refracted-text {
   width: 100%;
 }
 
-.refracted-wordmark__placeholder {
-  aspect-ratio: 1120 / 129;
-
+/* Reveal the first live frame without swapping between image and canvas. */
+.refracted-wordmark__canvas .refracted-text canvas {
+  opacity: 0;
+  transition: opacity 160ms ease-out;
+}
+.refracted-wordmark__canvas .refracted-text[data-ready="true"] canvas {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .refracted-wordmark__canvas .refracted-text canvas { transition: none; }
 }
 
-/* The live canvas replaces the identical preview after its first draw. */
-.refracted-wordmark__canvas:has(.refracted-text[data-ready="true"]) { background-image: none; }
+.refracted-wordmark__canvas .refracted-text__fallback {
+  font-size: 13cqi;
+  line-height: 1;
+}
