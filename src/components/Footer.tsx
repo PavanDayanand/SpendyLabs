@@ -41,6 +41,7 @@ export function Footer() {
           <Link to="/privacy">Privacy</Link>
           <a href={appTermsURL} target="_blank" rel="noopener noreferrer" aria-label="Terms of Use for the app (Apple EULA)">Terms of use</a>
           <Link to="/updates">Build notes</Link>
+          <Link to="/tools/convert-backup">Move from PWA</Link>
         </div>
       </div>
     </footer>

@@ -12,6 +12,7 @@ const menuItems = [
   { label: "Insights", link: "/#insights" },
   { label: "Shortcuts", link: "/#siri" },
   { label: "Updates", link: "/updates" },
+  { label: "Move from PWA", link: "/tools/convert-backup" },
 ];
 
 export function Header() {

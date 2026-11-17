@@ -1,0 +1,11 @@
+import { mkdir, writeFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
+import { convertPWAToIOS, IOS_ICON_SYMBOLS } from '../src/lib/migration/index.mjs';
+import { migrationFixture } from '../src/lib/migration/fixture.mjs';
+if (!process.argv[2]) throw new Error('Pass the SpendyIOS checkout path.');
+const folder = resolve(process.argv[2], 'SpendyTests/Fixtures');
+await mkdir(folder, { recursive: true });
+const { backup } = await convertPWAToIOS(migrationFixture());
+await writeFile(resolve(folder, 'pwa-migration-v1.json'), JSON.stringify(backup, null, 2) + '\n');
+await writeFile(resolve(folder, 'pwa-icon-symbols-v1.json'), JSON.stringify(IOS_ICON_SYMBOLS, null, 2) + '\n');
+console.log('Generated synthetic fixture for the actual iOS importer.');

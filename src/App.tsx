@@ -9,6 +9,7 @@ import { PrivacyPage } from "./pages/PrivacyPage";
 import { UpdatesPage } from "./pages/UpdatesPage";
 
 const RefractedPreviewPage = lazy(() => import("./pages/RefractedPreviewPage"));
+const ConvertBackupPage = lazy(() => import("./pages/ConvertBackupPage"));
 
 export default function App() {
   useMediaProtection();
@@ -18,6 +19,7 @@ export default function App() {
       "/": "Spendy | Money makes sense.",
       "/updates": "Build notes | Spendy",
       "/privacy": "Privacy Policy | Spendy",
+      "/tools/convert-backup": "Move to Spendy for iOS | Spendy",
       "/preview/refracted": "Refracted text preview | Spendy",
     };
     document.title = titles[pathname] || "Page not found | Spendy";
@@ -34,6 +36,7 @@ export default function App() {
       <Header />
       <main id="main">
         <Routes>
+          <Route path="/tools/convert-backup" element={<Suspense fallback={<p className="document-page">Loading converter…</p>}><ConvertBackupPage /></Suspense>} />
           <Route path="/preview/refracted" element={<Suspense fallback={<p>Loading preview…</p>}><RefractedPreviewPage /></Suspense>} />
           <Route path="/" element={<HomePage />} />
           <Route path="/updates" element={<UpdatesPage />} />

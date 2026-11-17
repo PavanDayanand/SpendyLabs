@@ -1,0 +1,79 @@
+.migration-page { max-width: 1240px; margin: 0 auto; padding: 100px 36px 100px; display: grid; grid-template-columns: 1fr 1.06fr; gap: clamp(40px, 7vw, 100px); align-items: start; color: var(--ink); }
+.migration-intro { position: sticky; top: 120px; }
+.migration-intro h1 { font-size: clamp(48px, 5.4vw, 78px); line-height: 1.02; letter-spacing: -.065em; margin: 25px 0; font-weight: 560; }
+.migration-intro h1 span { color: var(--muted); }
+.migration-intro > p:not(.eyebrow) { max-width: 420px; font-size: 18px; line-height: 1.65; color: var(--muted); }
+.migration-journey { display: flex; align-items: center; gap: 28px; margin: 42px 0 32px; padding: 10px 8px; }
+.migration-document, .migration-phone { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; border: 1.5px solid currentColor; border-radius: 14px; width: 98px; height: 132px; color: var(--ink); background: var(--paper); }
+.migration-document { align-items: flex-start; padding: 18px; gap: 8px; }
+.migration-document span, .migration-phone > span:last-child { font-size: 13px; font-weight: 650; }
+.migration-document i { width: 100%; height: 2px; background: currentColor; opacity: .18; }
+.migration-document i:last-child { width: 65%; }
+.migration-phone { border-radius: 22px; width: 86px; height: 154px; position: relative; padding-top: 10px; }
+.migration-island { position: absolute; top: 8px; width: 28px; height: 6px; border-radius: 10px; background: var(--ink); }
+.migration-journey-arrow { color: var(--muted); }
+.migration-journey.is-ready .migration-phone { background: var(--ink); color: var(--paper); }
+.migration-journey.is-ready .migration-island { background: var(--paper); }
+.migration-local { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; line-height: 1.6; color: var(--muted); }
+.migration-local svg { flex: 0 0 auto; margin-top: 2px; }
+.migration-steps { list-style: none; padding: 0; margin: 30px 0 0; display: grid; gap: 16px; font-size: 14px; line-height: 1.6; }
+.migration-steps li { display: flex; gap: 14px; }
+.migration-steps span { font-size: 11px; color: var(--muted); padding-top: 3px; font-variant-numeric: tabular-nums; }
+.migration-workbench { padding: clamp(22px, 3vw, 36px); border: 1px solid var(--line, #8884); border-radius: 24px; background: var(--surface, #fff); min-width: 0; }
+.migration-tool-heading { display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 10px; letter-spacing: .1em; font-weight: 600; }
+.migration-workbench h2 { font-size: 25px; letter-spacing: -.04em; line-height: 1.2; margin: 22px 0; }
+.migration-dropzone { width: 100%; padding: 30px 16px; display: flex; flex-direction: column; align-items: center; gap: 12px; border: 1px dashed var(--muted); border-radius: 14px; background: transparent; color: var(--ink); cursor: pointer; transition: background .15s, transform .15s; }
+.migration-dropzone:hover, .migration-dropzone.is-dragging { background: var(--paper); }
+.migration-dropzone:active { transform: scale(.99); }
+.migration-dropzone strong { font-size: 15px; max-width: 100%; overflow-wrap: anywhere; }
+.migration-dropzone > span { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.migration-options { display: grid; gap: 10px; margin-top: 25px; }
+.migration-options > label { font-size: 13px; font-weight: 600; }
+.migration-options > label > span:not(:only-child) { font-weight: 400; }
+.migration-options label > span { margin-left: 6px; color: var(--muted); }
+.migration-options select { appearance: none; width: 100%; min-height: 46px; border: 1px solid var(--line, #8885); border-radius: 8px; padding: 10px 32px 10px 10px; font: inherit; font-size: 16px; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%; background-size: 5px 5px; background-repeat: no-repeat; }
+.migration-options > p { margin: 0; font-size: 12px; line-height: 1.6; color: var(--muted); }
+.migration-check { display: flex; align-items: flex-start; gap: 6px; line-height: 1.6; margin: 8px 0; }
+.migration-check input { margin-top: 4px; flex: 0 0 auto; width: 18px; height: 18px; accent-color: var(--ink); }
+.migration-primary { width: 100%; min-height: 50px; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 18px; border: 0; border-radius: 10px; background: var(--ink); color: var(--paper); font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 24px; transition: opacity .15s, transform .15s; }
+.migration-primary:disabled { opacity: .35; cursor: default; }
+.migration-primary:active:not(:disabled) { transform: scale(.98); }
+.migration-primary:focus-visible, .migration-dropzone:focus-visible, .migration-workbench summary:focus-visible, .migration-workbench select:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.migration-footnote { text-align: center; font-size: 11px; color: var(--muted); margin: 16px 0 0; }
+.migration-busy { font-size: 13px; line-height: 1.6; margin-top: 18px; color: var(--muted); }
+.migration-error { display: flex; gap: 10px; border-left: 2px solid #c45235; padding: 4px 0 4px 12px; margin-top: 20px; }
+.migration-error svg { flex: 0 0 auto; margin-top: 3px; }
+.migration-error p { font-size: 13px; line-height: 1.6; margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.migration-review { margin-top: 25px; }
+.migration-success { display: flex; gap: 8px; align-items: center; font-size: 12px; line-height: 1.6; font-weight: 600; }
+.migration-success svg { flex: 0 0 auto; }
+.migration-counts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 24px 0; }
+.migration-counts dd { margin: 0 0 6px; font-size: 26px; font-weight: 550; letter-spacing: -.045em; font-variant-numeric: tabular-nums; }
+.migration-counts dt { font-size: 10px; color: var(--muted); text-transform: capitalize; }
+.migration-detail { border-top: 1px solid var(--line, #8884); padding: 8px 0; }
+.migration-detail summary { cursor: pointer; font-size: 13px; font-weight: 600; min-height: 44px; padding: 8px 0; gap: 12px; }
+.migration-detail summary > span { margin-left: auto; color: var(--muted); font-weight: 400; }
+.migration-detail summary::after { content: '+'; font-size: 18px; font-weight: 400; color: var(--muted); }
+.migration-detail[open] summary::after { content: '−'; }
+.migration-detail > p { font-size: 12px; line-height: 1.65; color: var(--muted); margin: 14px 0 0; }
+.migration-detail ul { list-style: none; padding: 0; margin: 14px 0 0; max-height: 260px; overflow: auto; overscroll-behavior: contain; }
+.migration-detail li { display: flex; align-items: center; gap: 10px; justify-content: space-between; font-size: 12px; line-height: 1.6; padding: 8px 0; border-bottom: 1px solid var(--line, #8883); }
+.migration-detail li > span:first-child { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.migration-detail small { display: block; color: var(--muted); font-size: 10px; }
+.migration-detail code { font-size: 10px; max-width: 50%; overflow-wrap: anywhere; text-align: right; }
+.migration-detail strong { font-variant-numeric: tabular-nums; }
+.migration-notes li { display: block; color: var(--muted); }
+.migration-archive { padding: 16px; border-radius: 10px; background: var(--paper); font-size: 12px; line-height: 1.7; margin-top: 10px; }
+.migration-archive p { margin: 6px 0 0; color: var(--muted); }
+.migration-next { display: flex; align-items: flex-start; gap: 10px; margin-top: 20px; font-size: 12px; line-height: 1.7; }
+.migration-next svg { flex: 0 0 auto; margin-top: 2px; }
+.migration-next p { color: var(--muted); margin: 6px 0 0; }
+@media (max-width: 850px) {
+  .migration-page { grid-template-columns: 1fr; max-width: 620px; padding: 64px 22px 60px; gap: 40px; }
+  .migration-intro { position: static; }
+  .migration-intro h1 { font-size: clamp(46px, 10vw, 70px); }
+  .migration-journey { margin: 28px 0 24px; }
+  .migration-steps { display: none; }
+}
+@media (max-width: 380px) { .migration-counts { grid-template-columns: 1fr 1fr; gap: 18px; } .migration-workbench { padding: 20px; } }
+@media (prefers-reduced-motion: reduce) { .migration-page * { transition: none !important; } }
