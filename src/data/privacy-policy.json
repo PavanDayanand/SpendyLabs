@@ -1,10 +1,10 @@
 {
   "title": "Privacy Policy",
-  "updated": "23 October 2026",
+  "updated": "21 November 2026",
   "developer": "Pavan Labs",
   "contactEmail": "hello.pavanlabs@gmail.com",
   "privacyPolicyURL": "https://spendy-ebon.vercel.app/privacy",
-  "intro": "Spendy is a personal finance app built by Pavan Labs. This policy explains how the current iOS app and the Spendy website handle information. The app is in development, and the public website is available at spendy-ebon.vercel.app.",
+  "intro": "Spendy is a personal finance app built by Pavan Labs. This policy explains how the app and the Spendy website handle information.",
   "sections": [
     {
       "id": "app-data",
@@ -21,17 +21,16 @@
       "title": "Receipt images and scanning",
       "scope": "app",
       "paragraphs": [
-        "If you use receipt scanning, you choose an image from Photos, capture one with the camera, or explicitly paste a copied image. The app reads that image using Apple’s Vision framework on your device. Optional Apple Intelligence assistance uses Apple’s on-device Foundation Models framework when available.",
+        "If you use receipt scanning, you choose an image from Photos or Files, capture one with the camera, explicitly paste a copied image, or share an image to Spendy from another app. The app reads that image using Apple’s Vision framework on your device. Optional Apple Intelligence assistance uses Apple’s on-device Foundation Models framework when available.",
         "The current app processes receipt images and recognised text for the review flow without sending them to a Spendy server. The saved transaction contains the fields you confirm; this version does not attach the original image or full recognised text to your saved transaction. An image already in your photo library remains there until you delete it yourself."
       ]
     },
     {
       "id": "voice",
-      "title": "Voice logging and Apple services",
+      "title": "Siri and Apple services",
       "scope": "app",
       "paragraphs": [
-        "Voice logging requests microphone and speech-recognition permission. Spendy requests on-device recognition when the device and language support it. Otherwise, Apple’s speech-recognition service may process audio on Apple’s servers under Apple’s privacy terms.",
-        "Spendy does not maintain its own server-side archive of your voice recordings. The recognised words are used to prepare a transaction for you to review. Siri and Shortcuts also operate under your Apple settings and Apple’s privacy terms."
+        "Siri and Shortcuts operate under your Apple settings and Apple’s privacy terms."
       ],
       "links": [
         {
@@ -60,9 +59,9 @@
       "title": "Widgets, reminders and permissions",
       "scope": "app",
       "paragraphs": [
-        "Spendy shares selected account, budget and transaction information with its own widgets and App Intents through local storage shared with those extensions. Widget content may be visible on your Home Screen or other system surfaces where you choose to place it.",
+        "Spendy shares selected account, budget and transaction information with its own widgets, receipt action extension and App Intents through local storage shared with those extensions. Confirmed receipt entries may remain in this shared storage until the app saves them to your ledger. Widget content may be visible on your Home Screen or other system surfaces where you choose to place it.",
         "If you enable notifications, the app uses Apple’s notification system for local reminders and budget alerts. Notification content can appear on your Lock Screen according to your settings.",
-        "Camera, photo selection, microphone, speech recognition, Siri and notification features are optional. You can decline the relevant permission and continue using manual transaction entry. You can change permissions and notification visibility in your device’s Settings."
+        "Camera, photo selection, Siri and notification features are optional. You can decline the relevant permission and continue using manual transaction entry. You can change permissions and notification visibility in your device’s Settings."
       ]
     },
     {
